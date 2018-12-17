@@ -19,7 +19,7 @@ namespace DashboardViewer
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            new Form1().Show();
+            new DashboardMain().Show();
             Application.Run();
         }
     }

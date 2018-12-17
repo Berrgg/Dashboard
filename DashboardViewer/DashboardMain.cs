@@ -10,15 +10,15 @@ using System.Windows.Forms;
 
 namespace DashboardViewer
 {
-    public partial class Form1 : DevExpress.XtraBars.TabForm
+    public partial class DashboardMain : DevExpress.XtraBars.TabForm
     {
-        public Form1()
+        public DashboardMain()
         {
             InitializeComponent();
         }
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
-            Form1 form = new Form1();
+            DashboardMain form = new DashboardMain();
             form.TabFormControl.Pages.Clear();
             e.Form = form;
             OpenFormCount++;

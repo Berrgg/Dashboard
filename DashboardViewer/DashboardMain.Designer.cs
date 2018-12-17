@@ -1,6 +1,6 @@
 ﻿namespace DashboardViewer
 {
-    partial class Form1
+    partial class DashboardMain
     {
         /// <summary>
         /// Required designer variable.
@@ -46,7 +46,7 @@
             this.tabFormControl_Main.Manager = this.tabFormDefaultManager1;
             this.tabFormControl_Main.Name = "tabFormControl_Main";
             this.tabFormControl_Main.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
-            this.tabFormControl_Main.Size = new System.Drawing.Size(827, 27);
+            this.tabFormControl_Main.Size = new System.Drawing.Size(821, 40);
             this.tabFormControl_Main.TabForm = this;
             this.tabFormControl_Main.TabIndex = 0;
             this.tabFormControl_Main.TabStop = false;
@@ -65,47 +65,49 @@
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 27);
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 40);
             this.barDockControlTop.Manager = null;
-            this.barDockControlTop.Size = new System.Drawing.Size(827, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(821, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 465);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 462);
             this.barDockControlBottom.Manager = null;
-            this.barDockControlBottom.Size = new System.Drawing.Size(827, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(821, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 27);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 40);
             this.barDockControlLeft.Manager = null;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 438);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 422);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(827, 27);
+            this.barDockControlRight.Location = new System.Drawing.Point(821, 40);
             this.barDockControlRight.Manager = null;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 438);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
             // 
-            // Form1
+            // DashboardMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 465);
+            this.ClientSize = new System.Drawing.Size(821, 462);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Controls.Add(this.tabFormControl_Main);
-            this.Name = "Form1";
+            this.LookAndFeel.SkinName = "Visual Studio 2013 Dark";
+            this.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.Name = "DashboardMain";
             this.TabFormControl = this.tabFormControl_Main;
-            this.Text = "Form1";
+            this.Text = "DashboardMain";
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl_Main)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).EndInit();
             this.ResumeLayout(false);
