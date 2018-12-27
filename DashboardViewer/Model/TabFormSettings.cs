@@ -7,7 +7,7 @@ namespace DashboardViewer.Model
 {
     public class TabFormSettings
     {
-        private readonly NameValueCollection _settings = ConfigurationManager.GetSection("TabFormsConfiguration") as NameValueCollection;
+        private readonly NameValueCollection _valueCollection = ConfigurationManager.GetSection("TabFormsConfiguration") as NameValueCollection;
         private readonly List<NameValueCollection> _keysList;
         private static Configuration _configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         private readonly KeyValueConfigurationCollection settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
@@ -21,9 +21,6 @@ namespace DashboardViewer.Model
         {
             try
             {
-                //var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                //var settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
-
                 if (settings[keyName] == null)
                 {
                     settings.Add(keyName, value.GetSettingsValue());
@@ -45,24 +42,24 @@ namespace DashboardViewer.Model
         {
             try
             {
-
+                if ()
             }
             catch (System.Exception)
             {
 
                 throw;
             }
-            _settings.Remove(keyName);
+            //_settings.Remove(keyName);
         }
 
         public string GetValue(string keyName)
         {
-            return _settings[keyName];
+            return _valueCollection[keyName];
         }
 
         public NameValueCollection GetKeys()
         {
-            return _settings;
+            return _valueCollection;
         }
 
         public string GetValueTabName(string keyName)
