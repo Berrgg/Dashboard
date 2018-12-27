@@ -12,21 +12,20 @@ namespace DashboardViewer.View
     public class NewTabForm : XtraUserControl
     {
         public string FilePath { get; private set; }
+        private TextEdit textEditPath;
+        private TextEdit textEditName;
 
         public NewTabForm()
         {
-            TextEdit textEditName = new TextEdit();
-            TextEdit textEditPath = new TextEdit();
-
             textEditPath.Click += new EventHandler(textEditPath_Click);
 
-            var lc = new LayoutControl
-            {
-                Dock = DockStyle.Fill
-            };
+            var lc = new LayoutControl();
+            lc.Dock = DockStyle.Fill;
+            lc.AddItem(string.Empty, textEditName).TextVisible = false;
+            lc.AddItem(string.Empty, textEditPath).TextVisible = false;
 
-
-
+            Controls.Add(lc);
+            Dock = DockStyle.Fill;
         }
 
         private void textEditPath_Click(object sender, EventArgs e)
@@ -42,6 +41,7 @@ namespace DashboardViewer.View
                 try
                 {
                     FilePath = dialog.InitialDirectory + dialog.FileName;
+                    textEditPath.Text = FilePath;
                 }
                 catch (Exception ex)
                 {
