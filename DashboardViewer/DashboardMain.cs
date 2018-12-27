@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraBars;
+﻿using DashboardViewer.View;
+using DevExpress.XtraBars;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -21,6 +23,13 @@ namespace DashboardViewer
             form.TabFormControl.Pages.Clear();
             e.Form = form;
             OpenFormCount++;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            NewTabForm newTab = new NewTabForm();
+
+            XtraDialog.Show(newTab, "Select XML file", MessageBoxButtons.OKCancel);
         }
     }
 }

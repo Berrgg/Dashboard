@@ -12,8 +12,8 @@ namespace DashboardViewer.View
     public class NewTabForm : XtraUserControl
     {
         public string FilePath { get; private set; }
-        private TextEdit textEditPath;
-        private TextEdit textEditName;
+        private TextEdit textEditPath = new TextEdit();
+        private TextEdit textEditName = new TextEdit();
 
         public NewTabForm()
         {
@@ -21,8 +21,8 @@ namespace DashboardViewer.View
 
             var lc = new LayoutControl();
             lc.Dock = DockStyle.Fill;
-            lc.AddItem(string.Empty, textEditName).TextVisible = false;
-            lc.AddItem(string.Empty, textEditPath).TextVisible = false;
+            lc.AddItem("Page name:", textEditName).TextVisible = true;
+            lc.AddItem("XML file:", textEditPath).TextVisible = true;
 
             Controls.Add(lc);
             Dock = DockStyle.Fill;
