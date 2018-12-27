@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Model\ISettingsValue.cs" />
     <Compile Include="Model\TabFormSettings.cs" />
+    <Compile Include="Model\TabFormSettingsValue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DashboardMain.resx">

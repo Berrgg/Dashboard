@@ -15,9 +15,9 @@ namespace DashboardViewer.Model
         {
             _keysList = new List<NameValueCollection>();
         }
-        public void AddKey(string keyName, string value)
+        public void AddKey(string keyName, ISettingsValue value)
         {
-            _settings.Add(keyName, value);
+            _settings.Add(keyName, value.ToString());
         }
 
         public void RemoveKey(string keyName)
