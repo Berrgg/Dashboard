@@ -9,6 +9,8 @@ namespace DashboardViewer
 {
     public partial class DashboardMain : DevExpress.XtraBars.TabForm
     {
+        static int OpenFormCount = 1;
+
         public DashboardMain()
         {
             InitializeComponent();
@@ -20,6 +22,5 @@ namespace DashboardViewer
             e.Form = form;
             OpenFormCount++;
         }
-        static int OpenFormCount = 1;
     }
 }
