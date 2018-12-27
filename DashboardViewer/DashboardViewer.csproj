@@ -59,6 +59,7 @@
     <Compile Include="DashboardMain.Designer.cs">
       <DependentUpon>DashboardMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\ISettingsValue.cs" />
     <Compile Include="Model\TabFormSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
