@@ -9,6 +9,8 @@ namespace DashboardViewer.Model
     {
         private readonly NameValueCollection _settings = ConfigurationManager.GetSection("TabFormsConfiguration") as NameValueCollection;
         private readonly List<NameValueCollection> _keysList;
+        private static Configuration _configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        private readonly KeyValueConfigurationCollection settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
 
 
         public TabFormSettings()
@@ -19,8 +21,8 @@ namespace DashboardViewer.Model
         {
             try
             {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = ((AppSettingsSection)configFile.GetSection("TabFormsConfiguration")).Settings;
+                //var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                //var settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
 
                 if (settings[keyName] == null)
                 {
@@ -30,8 +32,8 @@ namespace DashboardViewer.Model
                 {
                     settings[keyName].Value = value.GetSettingsValue();
                 }
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+                _configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(_configFile.AppSettings.SectionInformation.Name);
             }
             catch (ConfigurationErrorsException)
             {
@@ -41,6 +43,15 @@ namespace DashboardViewer.Model
 
         public void RemoveKey(string keyName)
         {
+            try
+            {
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
             _settings.Remove(keyName);
         }
 
