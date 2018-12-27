@@ -20,6 +20,11 @@ namespace DashboardViewer.Model
             _settings.Add(keyName, value.ToString());
         }
 
+        public void ChangeKeyValue(string keyName, ISettingsValue value)
+        {
+            _settings[keyName] = value.ToString();
+        }
+
         public void RemoveKey(string keyName)
         {
             _settings.Remove(keyName);
