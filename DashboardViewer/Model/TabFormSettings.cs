@@ -10,7 +10,7 @@ namespace DashboardViewer.Model
         private readonly NameValueCollection _valueCollection = ConfigurationManager.GetSection("TabFormsConfiguration") as NameValueCollection;
         private readonly List<NameValueCollection> _keysList;
         private static Configuration _configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        private readonly KeyValueConfigurationCollection settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
+        private readonly KeyValueConfigurationCollection _settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
 
 
         public TabFormSettings()
@@ -21,13 +21,13 @@ namespace DashboardViewer.Model
         {
             try
             {
-                if (settings[keyName] == null)
+                if (_settings[keyName] == null)
                 {
-                    settings.Add(keyName, value.GetSettingsValue());
+                    _settings.Add(keyName, value.GetSettingsValue());
                 }
                 else
                 {
-                    settings[keyName].Value = value.GetSettingsValue();
+                    _settings[keyName].Value = value.GetSettingsValue();
                 }
                 _configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(_configFile.AppSettings.SectionInformation.Name);
@@ -42,14 +42,16 @@ namespace DashboardViewer.Model
         {
             try
             {
-                if ()
-            }
-            catch (System.Exception)
-            {
+                if (_settings[keyName] != null)
+                    _settings.Remove(keyName);
 
+                _configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(_configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
                 throw;
             }
-            //_settings.Remove(keyName);
         }
 
         public string GetValue(string keyName)
