@@ -30,6 +30,8 @@ namespace DashboardViewer.Model
                 {
                     settings[keyName].Value = value.GetSettingsValue();
                 }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
             }
             catch (ConfigurationErrorsException)
             {
@@ -47,20 +49,9 @@ namespace DashboardViewer.Model
             return _settings[keyName];
         }
 
-        public IEnumerable<NameValueCollection> GetKeys()
+        public NameValueCollection GetKeys()
         {
-            if (_settings.Count == 0)
-            {
-                new SettingsPropertyNotFoundException("No TabFormSettings stored in App.config file.");
-            }
-            else
-            {
-                foreach (NameValueCollection key in _settings)
-                {
-                    _keysList.Add(key);
-                }
-            }
-            return _keysList;
+            return _settings;
         }
 
         public string GetValueTabName(string keyName)
