@@ -15,14 +15,26 @@ namespace DashboardViewer.Model
         {
             _keysList = new List<NameValueCollection>();
         }
-        public void AddKey(string keyName, ISettingsValue value)
+        public void AddUpdateKey(string keyName, ISettingsValue value)
         {
-            _settings.Add(keyName, value.ToString());
-        }
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = ((AppSettingsSection)configFile.GetSection("TabFormsConfiguration")).Settings;
 
-        public void ChangeKeyValue(string keyName, ISettingsValue value)
-        {
-            _settings[keyName] = value.ToString();
+                if (settings[keyName] == null)
+                {
+                    settings.Add(keyName, value.GetSettingsValue());
+                }
+                else
+                {
+                    settings[keyName].Value = value.GetSettingsValue();
+                }
+            }
+            catch (ConfigurationErrorsException)
+            {
+                throw;
+            }
         }
 
         public void RemoveKey(string keyName)
