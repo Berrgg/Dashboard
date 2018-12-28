@@ -61,7 +61,6 @@
     <Compile Include="DashboardMain.Designer.cs">
       <DependentUpon>DashboardMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper\CustomPageNameValidationRule.cs" />
     <Compile Include="Model\ISettingsValue.cs" />
     <Compile Include="Model\TabFormSettings.cs" />
     <Compile Include="Model\TabFormSettingsValue.cs" />
@@ -96,7 +95,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
