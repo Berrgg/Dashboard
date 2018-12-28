@@ -1,4 +1,5 @@
-﻿using DashboardViewer.View;
+﻿using DashboardViewer.Model;
+using DashboardViewer.View;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using System;
@@ -29,7 +30,14 @@ namespace DashboardViewer
         {
             NewTabForm newTab = new NewTabForm();
 
-            XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel);
+            if(XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                var settingsValue = new TabFormSettingsValue(newTab.PageName, newTab.FilePath);
+
+                var keyName = "page" + OpenFormCount++;
+                var settings = new TabFormSettings();
+                settings.AddUpdateKey(keyName, settingsValue);
+            }
         }
     }
 }
