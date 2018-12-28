@@ -22,10 +22,12 @@ namespace DashboardViewer.View
             var lc = new LayoutControl();
             lc.Dock = DockStyle.Fill;
             lc.AddItem("Page name:", textEditName).TextVisible = true;
-            lc.AddItem("XML file:", textEditPath).TextVisible = true;
+            lc.AddItem("Dashboard file:", textEditPath).TextVisible = true;
 
             Controls.Add(lc);
-            Dock = DockStyle.Fill;
+            Dock = DockStyle.None;
+            Width = 500;
+            Height = 200;
         }
 
         private void textEditPath_Click(object sender, EventArgs e)
