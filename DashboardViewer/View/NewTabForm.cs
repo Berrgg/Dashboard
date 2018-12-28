@@ -22,6 +22,7 @@ namespace DashboardViewer.View
             textEditPath.Click += new EventHandler(textEditPath_Click);
             textEditName.Leave += new EventHandler(textEdit_Leave);
             textEditName.Validating += new CancelEventHandler(textEditName_Validating);
+            textEditPath.Validating += new CancelEventHandler(textEditPath_Validating);
 
             var lc = new LayoutControl();
             lc.Dock = DockStyle.Fill;
@@ -44,7 +45,19 @@ namespace DashboardViewer.View
                 e.Cancel = true;
             else
                 textName.ErrorText = string.Empty;
-            
+        }
+
+        private void textEditPath_Validating(object sender, CancelEventArgs e)
+        {
+            var textPath = (sender as TextEdit);
+            textPath.ErrorText = "Field cannot be blank";
+
+            var pathName = textPath.Text;
+
+            if (pathName == string.Empty)
+                e.Cancel = true;
+            else
+                textPath.ErrorText = string.Empty;
         }
 
         private void textEdit_Leave(object sender, EventArgs e)
