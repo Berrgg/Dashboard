@@ -29,7 +29,7 @@ namespace DashboardViewer
         {
             NewTabForm newTab = new NewTabForm();
 
-            XtraDialog.Show(newTab, "Select XML file", MessageBoxButtons.OKCancel);
+            XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel);
         }
     }
 }
