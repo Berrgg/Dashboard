@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevExpress.XtraEditors.DXErrorProvider;
-using DashboardViewer.Helper;
 
 namespace DashboardViewer.View
 {
@@ -28,9 +27,6 @@ namespace DashboardViewer.View
             lc.Dock = DockStyle.Fill;
             lc.AddItem("Page name:", textEditName).TextVisible = true;
             lc.AddItem("Dashboard file:", textEditPath).TextVisible = true;
-
-            var validation = new DXValidationProvider();
-            validation.SetValidationRule(textEditName, new CustomPageNameValidationRule());
 
             Controls.Add(lc);
             Dock = DockStyle.None;
