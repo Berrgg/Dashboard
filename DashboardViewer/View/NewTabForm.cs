@@ -12,6 +12,7 @@ namespace DashboardViewer.View
     public class NewTabForm : XtraUserControl
     {
         public string FilePath { get; private set; }
+        public string PageName { get; private set; }
         private TextEdit textEditPath = new TextEdit();
         private TextEdit textEditName = new TextEdit();
 
@@ -43,6 +44,8 @@ namespace DashboardViewer.View
                 try
                 {
                     FilePath = dialog.InitialDirectory + dialog.FileName;
+                    PageName = textEditName.Text;
+
                     textEditPath.Text = FilePath;
                 }
                 catch (Exception ex)
