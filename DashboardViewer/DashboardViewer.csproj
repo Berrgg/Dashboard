@@ -61,6 +61,7 @@
     <Compile Include="DashboardMain.Designer.cs">
       <DependentUpon>DashboardMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CustomPageNameValidationRule.cs" />
     <Compile Include="Model\ISettingsValue.cs" />
     <Compile Include="Model\TabFormSettings.cs" />
     <Compile Include="Model\TabFormSettingsValue.cs" />
