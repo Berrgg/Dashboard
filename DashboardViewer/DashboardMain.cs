@@ -28,6 +28,11 @@ namespace DashboardViewer
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            CreatePopUpForm();
+        }
+
+        private void CreatePopUpForm()
+        {
             NewTabForm newTab = new NewTabForm();
 
             if(XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel) == DialogResult.OK)
