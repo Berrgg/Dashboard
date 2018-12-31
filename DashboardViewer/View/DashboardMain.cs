@@ -13,6 +13,8 @@ namespace DashboardViewer
     public partial class DashboardMain : DevExpress.XtraBars.TabForm
     {
         static int OpenFormCount = 1;
+        private string _pageName;
+        private string _filePath;
 
         public DashboardMain()
         {
@@ -49,6 +51,20 @@ namespace DashboardViewer
                     var settings = new TabFormSettings();
                     settings.AddUpdateKey(keyName, settingsValue);
                 }
+            }
+        }
+
+        private void AddNewTabFormPage()
+        {
+            var tabSettings = new TabFormSettings();
+            var settingsKeys = tabSettings.GetKeys();
+
+            foreach (string key in settingsKeys.Keys)
+            {
+                _pageName = tabSettings.GetValueTabName(key);
+                _filePath = tabSettings.GetValueDashboardPath(key);
+
+                tabFormControl_Main.AddNewPage();
             }
         }
     }
