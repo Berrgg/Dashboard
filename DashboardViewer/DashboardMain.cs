@@ -37,11 +37,18 @@ namespace DashboardViewer
 
             if(XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                var settingsValue = new TabFormSettingsValue(newTab.PageName, newTab.FilePath);
+                if (newTab.PageName == null || newTab.FilePath == null)
+                {
+                    MessageBox.Show("Fields cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    var settingsValue = new TabFormSettingsValue(newTab.PageName, newTab.FilePath);
 
-                var keyName = "page" + OpenFormCount++;
-                var settings = new TabFormSettings();
-                settings.AddUpdateKey(keyName, settingsValue);
+                    var keyName = "page" + OpenFormCount++;
+                    var settings = new TabFormSettings();
+                    settings.AddUpdateKey(keyName, settingsValue);
+                }
             }
         }
     }
