@@ -55,10 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DashboardMain.cs">
+    <Compile Include="View\DashboardMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DashboardMain.Designer.cs">
+    <Compile Include="View\DashboardMain.Designer.cs">
       <DependentUpon>DashboardMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ISettingsValue.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="View\NewTabForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <EmbeddedResource Include="DashboardMain.resx">
+    <EmbeddedResource Include="View\DashboardMain.resx">
       <DependentUpon>DashboardMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
