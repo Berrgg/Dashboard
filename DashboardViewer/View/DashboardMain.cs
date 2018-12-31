@@ -19,6 +19,7 @@ namespace DashboardViewer
         public DashboardMain()
         {
             InitializeComponent();
+            AddTabFormPages();
         }
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
@@ -54,7 +55,7 @@ namespace DashboardViewer
             }
         }
 
-        private void AddNewTabFormPage()
+        private void AddTabFormPages()
         {
             var tabSettings = new TabFormSettings();
             var settingsKeys = tabSettings.GetKeys();
@@ -66,6 +67,11 @@ namespace DashboardViewer
 
                 tabFormControl_Main.AddNewPage();
             }
+        }
+
+        private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
+        {
+            e.Page.Text = _pageName;
         }
     }
 }
