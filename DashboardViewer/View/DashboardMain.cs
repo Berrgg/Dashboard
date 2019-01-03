@@ -16,11 +16,12 @@ namespace MyApp
         static int OpenFormCount = 1;
         private string _pageName;
         private string _filePath;
+        private string _key;
 
         public DashboardMain()
         {
             InitializeComponent();
-          //  AddTabFormPages();
+            AddTabFormPages();
         }
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
@@ -52,8 +53,18 @@ namespace MyApp
                     var settings = new TabFormSettings();
                     var keyName = (settings.GiveMaxKeyValue() + 1).ToString();
                     settings.AddUpdateKey(keyName, settingsValue);
+
+                    AddPageSettings(keyName, newTab.FilePath, newTab.PageName);
+                    tabFormControl_Main.AddNewPage();
                 }
             }
+        }
+
+        private void AddPageSettings(string keyName, string filePath, string pageName)
+        {
+            _key = keyName;
+            _pageName = pageName;
+            _filePath = filePath;
         }
 
         private void AddTabFormPages()
@@ -65,6 +76,7 @@ namespace MyApp
             {
                 _pageName = tabSettings.GetValueTabName(key);
                 _filePath = tabSettings.GetValueDashboardPath(key);
+                _key = key;
 
                 tabFormControl_Main.AddNewPage();
             }
@@ -73,10 +85,15 @@ namespace MyApp
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
         {
             e.Page.Text = _pageName;
+            e.Page.Tag = _key;
 
-            DashboardViewer viewer = new DashboardViewer(e.Page.Container);
-            viewer.Dock = DockStyle.Fill;
-            viewer.DashboardSource = @"" +_filePath;
+            DashboardViewer viewer = new DashboardViewer()
+            {
+                Dock = DockStyle.Fill,
+                DashboardSource = @"" + _filePath
+            };
+
+            e.Page.ContentContainer.Controls.Add(viewer);
         }
     }
 }
