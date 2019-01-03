@@ -20,7 +20,7 @@ namespace MyApp
         public DashboardMain()
         {
             InitializeComponent();
-            AddTabFormPages();
+          //  AddTabFormPages();
         }
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
@@ -49,8 +49,8 @@ namespace MyApp
                 {
                     var settingsValue = new TabFormSettingsValue(newTab.PageName, newTab.FilePath);
 
-                    var keyName = "page" + OpenFormCount++;
                     var settings = new TabFormSettings();
+                    var keyName = (settings.GiveMaxKeyValue() + 1).ToString();
                     settings.AddUpdateKey(keyName, settingsValue);
                 }
             }
@@ -73,6 +73,10 @@ namespace MyApp
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
         {
             e.Page.Text = _pageName;
+
+            DashboardViewer viewer = new DashboardViewer(e.Page.Container);
+            viewer.Dock = DockStyle.Fill;
+            viewer.DashboardSource = @"" +_filePath;
         }
     }
 }
