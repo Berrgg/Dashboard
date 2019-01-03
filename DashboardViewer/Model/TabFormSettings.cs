@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
@@ -91,6 +92,20 @@ namespace MyApp.Model
         public int CountKeys()
         {
             return _valueCollection.Count;
+        }
+
+        public int GiveMaxKeyValue()
+        {
+            var listOfKeys = new List<int>();
+            int x = 0;
+
+            foreach (string key in _valueCollection.Keys)
+            {
+                if (int.TryParse(key, out x))
+                    listOfKeys.Add(x);
+            }
+
+            return listOfKeys.Max();
         }
     }
 }
