@@ -87,5 +87,10 @@ namespace MyApp.Model
 
             return string.Empty;
         }
+
+        public int CountKeys()
+        {
+            return _valueCollection.Count;
+        }
     }
 }
