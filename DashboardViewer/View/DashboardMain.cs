@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Windows.Forms;
+using DevExpress.DashboardCommon;
 
 namespace MyApp
 {
@@ -90,10 +91,17 @@ namespace MyApp
             DashboardViewer viewer = new DashboardViewer()
             {
                 Dock = DockStyle.Fill,
-                DashboardSource = @"" + _filePath
+                DashboardSource = @"" + _filePath,
             };
 
+            viewer.DataLoadingError += new DataLoadingErrorEventHandler(DashboardLoadingError);
+
             e.Page.ContentContainer.Controls.Add(viewer);
+        }
+
+        private void DashboardLoadingError(object sender, DataLoadingErrorEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
