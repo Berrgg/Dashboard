@@ -105,7 +105,10 @@ namespace MyApp.Model
                     listOfKeys.Add(x);
             }
 
-            return listOfKeys.Max();
+            if (listOfKeys.Count == 0)
+                return 0;
+            else
+                return listOfKeys.Max();
         }
     }
 }
