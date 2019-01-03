@@ -1,4 +1,4 @@
-﻿namespace DashboardViewer
+﻿namespace MyApp
 {
     partial class DashboardMain
     {

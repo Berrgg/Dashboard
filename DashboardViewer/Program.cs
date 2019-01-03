@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
 
-namespace DashboardViewer
+namespace MyApp
 {
     static class Program
     {

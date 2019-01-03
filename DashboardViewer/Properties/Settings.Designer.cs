@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DashboardViewer.Properties
+namespace MyApp.Properties
 {
 
 

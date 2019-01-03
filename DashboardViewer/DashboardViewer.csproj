@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.2" />
+    <Reference Include="DevExpress.Dashboard.v18.2.Win, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.2" />
     <Reference Include="DevExpress.Printing.v18.2.Core" />
     <Reference Include="DevExpress.Utils.v18.2" />

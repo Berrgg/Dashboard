@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.XtraEditors.DXErrorProvider;
 
-namespace DashboardViewer.View
+namespace MyApp.View
 {
     public class NewTabForm : XtraUserControl
     {
