@@ -103,13 +103,10 @@ namespace MyApp
                 e.Page.Text = _pageName;
                 e.Page.Tag = _key;
 
-                DashboardViewer viewer = new DashboardViewer()
-                {
-                    Dock = DockStyle.Fill,
-                    DashboardSource = @"" + _filePath,
-                };
-
+                DashboardViewer viewer = new DashboardViewer();
+                viewer.Dock = DockStyle.Fill;
                 viewer.DataLoadingError += new DataLoadingErrorEventHandler(DashboardLoadingError);
+                viewer.DashboardSource = @"" + _filePath;
 
                 e.Page.ContentContainer.Controls.Add(viewer);
             }
