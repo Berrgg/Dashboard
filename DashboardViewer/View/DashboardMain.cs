@@ -18,6 +18,8 @@ namespace MyApp
         private string _pageName;
         private string _filePath;
         private string _key;
+        private bool _isNewPage =  true;
+        private bool _canAddNewPage = true;
 
         public DashboardMain()
         {
@@ -56,8 +58,12 @@ namespace MyApp
                     settings.AddUpdateKey(keyName, settingsValue);
 
                     AddPageSettings(keyName, newTab.FilePath, newTab.PageName);
-                    tabFormControl_Main.AddNewPage();
+                  //  tabFormControl_Main.AddNewPage();
                 }
+            }
+            else
+            {
+                _canAddNewPage = false;
             }
         }
 
@@ -73,6 +79,8 @@ namespace MyApp
             var tabSettings = new TabFormSettings();
             var settingsKeys = tabSettings.GetKeys();
 
+            _isNewPage = false;
+
             foreach (string key in settingsKeys.Keys)
             {
                 _pageName = tabSettings.GetValueTabName(key);
@@ -81,22 +89,31 @@ namespace MyApp
 
                 tabFormControl_Main.AddNewPage();
             }
+
+            _isNewPage = true;
         }
 
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
         {
-            e.Page.Text = _pageName;
-            e.Page.Tag = _key;
+            if (_isNewPage)
+                CreatePopUpForm();
 
-            DashboardViewer viewer = new DashboardViewer()
+            if (_canAddNewPage)
             {
-                Dock = DockStyle.Fill,
-                DashboardSource = @"" + _filePath,
-            };
+                e.Page.Text = _pageName;
+                e.Page.Tag = _key;
 
-            viewer.DataLoadingError += new DataLoadingErrorEventHandler(DashboardLoadingError);
+                DashboardViewer viewer = new DashboardViewer()
+                {
+                    Dock = DockStyle.Fill,
+                    DashboardSource = @"" + _filePath,
+                };
 
-            e.Page.ContentContainer.Controls.Add(viewer);
+                viewer.DataLoadingError += new DataLoadingErrorEventHandler(DashboardLoadingError);
+
+                e.Page.ContentContainer.Controls.Add(viewer);
+            }
+            _canAddNewPage = true;
         }
 
         private void DashboardLoadingError(object sender, DataLoadingErrorEventArgs e)
