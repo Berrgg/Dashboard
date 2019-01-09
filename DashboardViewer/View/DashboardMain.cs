@@ -110,6 +110,15 @@ namespace MyApp
 
                 e.Page.ContentContainer.Controls.Add(viewer);
             }
+            else
+            {
+                var tabFormControl = sender as TabFormControl;
+                BeginInvoke(new Action(() =>
+                {
+                    tabFormControl.Pages.Remove(e.Page);
+                }
+                ));
+            }
             _canAddNewPage = true;
         }
 
