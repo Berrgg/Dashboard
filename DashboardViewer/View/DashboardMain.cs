@@ -4,9 +4,6 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.DashboardWin;
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.Windows.Forms;
 using DevExpress.DashboardCommon;
 
@@ -58,7 +55,6 @@ namespace MyApp
                     settings.AddUpdateKey(keyName, settingsValue);
 
                     AddPageSettings(keyName, newTab.FilePath, newTab.PageName);
-                  //  tabFormControl_Main.AddNewPage();
                 }
             }
             else
