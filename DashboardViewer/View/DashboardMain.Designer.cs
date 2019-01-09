@@ -52,6 +52,7 @@
             this.tabFormControl_Main.TabIndex = 0;
             this.tabFormControl_Main.TabStop = false;
             this.tabFormControl_Main.PageCreated += new DevExpress.XtraBars.PageCreatedEventHandler(this.tabFormControl_Main_PageCreated);
+            this.tabFormControl_Main.PageClosed += new DevExpress.XtraBars.PageClosedEventHandler(this.TabFormControl_Main_PageClosed);
             this.tabFormControl_Main.OuterFormCreating += new DevExpress.XtraBars.OuterFormCreatingEventHandler(this.OnOuterFormCreating);
             // 
             // tabFormDefaultManager1

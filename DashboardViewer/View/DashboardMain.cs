@@ -121,10 +121,21 @@ namespace MyApp
             }
             _canAddNewPage = true;
         }
+        private void TabFormControl_Main_PageClosed(object sender, PageClosedEventArgs e)
+        {
+            DeleteSettingsKeyForClosePage(e.Page.Tag.ToString());
+        }
+
+        private void DeleteSettingsKeyForClosePage(string keyName)
+        {
+            var tabSettings = new TabFormSettings();
+            tabSettings.RemoveKey(keyName);
+        }
 
         private void DashboardLoadingError(object sender, DataLoadingErrorEventArgs e)
         {
             e.Handled = true;
         }
+
     }
 }
