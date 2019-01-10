@@ -9,14 +9,12 @@ namespace MyApp.Model
     public class TabFormSettings
     {
         private readonly NameValueCollection _valueCollection = ConfigurationManager.GetSection("TabFormsConfiguration") as NameValueCollection;
-        private readonly List<NameValueCollection> _keysList;
         private static Configuration _configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         private readonly KeyValueConfigurationCollection _settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
 
 
         public TabFormSettings()
         {
-            _keysList = new List<NameValueCollection>();
         }
         public void AddUpdateKey(string keyName, ISettingsValue value)
         {
