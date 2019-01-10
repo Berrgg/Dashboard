@@ -8,13 +8,15 @@ namespace MyApp.Model
 {
     public class TabFormSettings
     {
-        private readonly NameValueCollection _valueCollection = ConfigurationManager.GetSection("TabFormsConfiguration") as NameValueCollection;
+        private readonly NameValueCollection _valueCollection;
         private static Configuration _configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        private readonly KeyValueConfigurationCollection _settings = ((AppSettingsSection)_configFile.GetSection("TabFormsConfiguration")).Settings;
+        private readonly KeyValueConfigurationCollection _settings;
 
 
-        public TabFormSettings()
+        public TabFormSettings(string sectionName)
         {
+            _valueCollection = ConfigurationManager.GetSection(sectionName) as NameValueCollection;
+            _settings = ((AppSettingsSection)_configFile.GetSection(sectionName)).Settings;
         }
         public void AddUpdateKey(string keyName, ISettingsValue value)
         {

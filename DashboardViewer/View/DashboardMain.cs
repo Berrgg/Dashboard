@@ -50,7 +50,7 @@ namespace MyApp
                 {
                     var settingsValue = new TabFormSettingsValue(newTab.PageName, newTab.FilePath);
 
-                    var settings = new TabFormSettings();
+                    var settings = new TabFormSettings("TabFormsConfiguration");
                     var keyName = (settings.GiveMaxKeyValue() + 1).ToString();
                     settings.AddUpdateKey(keyName, settingsValue);
 
@@ -72,7 +72,7 @@ namespace MyApp
 
         private void AddTabFormPages()
         {
-            var tabSettings = new TabFormSettings();
+            var tabSettings = new TabFormSettings("TabFormsConfiguration");
             var settingsKeys = tabSettings.GetKeys();
 
             _isNewPage = false;
@@ -124,7 +124,7 @@ namespace MyApp
 
         private void DeleteSettingsKeyForClosePage(string keyName)
         {
-            var tabSettings = new TabFormSettings();
+            var tabSettings = new TabFormSettings("TabFormsConfiguration");
             tabSettings.RemoveKey(keyName);
         }
 
