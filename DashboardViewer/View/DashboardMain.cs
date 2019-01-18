@@ -99,7 +99,7 @@ namespace MyApp
                 e.Page.Text = _pageName;
                 e.Page.Tag = _key;
 
-                DashboardViewer viewer = new DashboardViewer();
+                var viewer = new DevExpress.DashboardWin.DashboardViewer();
                 viewer.Dock = DockStyle.Fill;
                 viewer.DataLoadingError += new DataLoadingErrorEventHandler(DashboardLoadingError);
                 viewer.DashboardSource = @"" + _filePath;
