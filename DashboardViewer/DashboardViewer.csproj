@@ -71,6 +71,9 @@
     <Compile Include="View\NewTabForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="View\SettingsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <EmbeddedResource Include="View\DashboardMain.resx">
       <DependentUpon>DashboardMain.cs</DependentUpon>
     </EmbeddedResource>
