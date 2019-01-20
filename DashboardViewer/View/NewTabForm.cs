@@ -7,13 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevExpress.XtraEditors.DXErrorProvider;
+using DashboardViewer.View;
+using DashboardViewer.Model;
+using MyApp.Model;
 
 namespace MyApp.View
 {
-    public class NewTabForm : XtraUserControl
+    public class NewTabForm : XtraUserControl, ISettingsForm
     {
+        public bool IsFormValid { get; private set; }
         public string FilePath { get; private set; }
         public string PageName { get; private set; }
+        public string KeyName { get; private set; }
+
         public TextEdit textEditPath = new TextEdit();
         public TextEdit textEditName = new TextEdit();
 
@@ -86,6 +92,33 @@ namespace MyApp.View
                 {
                     MessageBox.Show("Error when selected XML file. Error message: " + ex.Message);
                 }
+            }
+        }
+
+        public void ValidForm()
+        {
+            if (PageName == null || FilePath == null)
+                IsFormValid = false;
+            else
+                IsFormValid = true;
+        }
+
+        public void Execute()
+        {
+            ValidForm();
+
+            if (IsFormValid == false)
+            {
+                XtraMessageBox.Show("Fields cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                var settingsValue = new TabFormSettingsValue(PageName, FilePath);
+
+                var settings = new TabFormSettings("TabFormsConfiguration");
+                var keyName = (settings.GiveMaxKeyValue() + 1).ToString();
+                KeyName = keyName;
+                settings.AddUpdateKey(keyName, settingsValue);
             }
         }
     }

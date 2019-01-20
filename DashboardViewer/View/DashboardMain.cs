@@ -42,20 +42,12 @@ namespace MyApp
 
             if(XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                if (newTab.PageName == null || newTab.FilePath == null)
-                {
-                    MessageBox.Show("Fields cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                newTab.Execute();
+
+                if (newTab.IsFormValid == true)
+                    AddPageSettings(newTab.KeyName, newTab.FilePath, newTab.PageName);
                 else
-                {
-                    var settingsValue = new TabFormSettingsValue(newTab.PageName, newTab.FilePath);
-
-                    var settings = new TabFormSettings("TabFormsConfiguration");
-                    var keyName = (settings.GiveMaxKeyValue() + 1).ToString();
-                    settings.AddUpdateKey(keyName, settingsValue);
-
-                    AddPageSettings(keyName, newTab.FilePath, newTab.PageName);
-                }
+                    _canAddNewPage = false;
             }
             else
             {
