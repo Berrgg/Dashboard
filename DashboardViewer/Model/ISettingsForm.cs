@@ -8,6 +8,9 @@ namespace DashboardViewer.Model
 {
     public interface ISettingsForm
     {
+        bool IsFormValid();
+        string GetSettingsKey();
+        string GetSettingsValue();
         void ValidForm();
         void Execute();
     }

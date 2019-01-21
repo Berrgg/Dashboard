@@ -15,7 +15,7 @@ namespace MyApp.View
 {
     public class NewTabForm : XtraUserControl, ISettingsForm
     {
-        public bool IsFormValid { get; private set; }
+        private bool _isFormValid;
         public string FilePath { get; private set; }
         public string PageName { get; private set; }
         public string KeyName { get; private set; }
@@ -98,16 +98,16 @@ namespace MyApp.View
         public void ValidForm()
         {
             if (PageName == null || FilePath == null)
-                IsFormValid = false;
+                _isFormValid = false;
             else
-                IsFormValid = true;
+                _isFormValid = true;
         }
 
         public void Execute()
         {
             ValidForm();
 
-            if (IsFormValid == false)
+            if (_isFormValid == false)
             {
                 XtraMessageBox.Show("Fields cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -120,6 +120,21 @@ namespace MyApp.View
                 KeyName = keyName;
                 settings.AddUpdateKey(keyName, settingsValue);
             }
+        }
+
+        public bool IsFormValid()
+        {
+            return _isFormValid;
+        }
+
+        public string GetSettingsKey()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetSettingsValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

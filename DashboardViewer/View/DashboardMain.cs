@@ -6,6 +6,7 @@ using DevExpress.DashboardWin;
 using System;
 using System.Windows.Forms;
 using DevExpress.DashboardCommon;
+using DashboardViewer.Model;
 
 namespace MyApp
 {
@@ -39,12 +40,13 @@ namespace MyApp
         private void CreatePopUpForm()
         {
             NewTabForm newTab = new NewTabForm();
+            SettingsFormEngine formEngine = new SettingsFormEngine(newTab);
 
             if(XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                newTab.Execute();
+                formEngine.Run();
 
-                if (newTab.IsFormValid == true)
+                if (formEngine.IsFormValid() == true)
                     AddPageSettings(newTab.KeyName, newTab.FilePath, newTab.PageName);
                 else
                     _canAddNewPage = false;
