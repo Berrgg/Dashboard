@@ -23,7 +23,9 @@ namespace MyApp
         public DashboardMain()
         {
             InitializeComponent();
-            AddTabFormPages();
+
+            var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
+            AddTabFormPages(tabSettings);
         }
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
