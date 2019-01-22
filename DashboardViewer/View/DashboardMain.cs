@@ -7,6 +7,7 @@ using System;
 using System.Windows.Forms;
 using DevExpress.DashboardCommon;
 using DashboardViewer.Model;
+using System.Collections.Specialized;
 
 namespace MyApp
 {
@@ -47,7 +48,7 @@ namespace MyApp
                 formEngine.Run();
 
                 if (formEngine.IsFormValid() == true)
-                    AddPageSettings(newTab.KeyName, newTab.FilePath, newTab.PageName);
+                    AddPageSettings(formEngine.SettingsKey(), formEngine.SettingsValue());
                 else
                     _canAddNewPage = false;
             }
@@ -57,21 +58,20 @@ namespace MyApp
             }
         }
 
-        private void AddPageSettings(string keyName, string filePath, string pageName)
+        private void AddPageSettings(string keyName, string keyValue)
         {
             _key = keyName;
             _pageName = pageName;
             _filePath = filePath;
         }
 
-        private void AddTabFormPages()
+        private void AddTabFormPages(NameValueCollection keyCollection)
         {
-            var tabSettings = new TabFormSettings("TabFormsConfiguration");
-            var settingsKeys = tabSettings.GetKeys();
+            var tabSettings = new TabFormSettings(keyCollection);
 
             _isNewPage = false;
 
-            foreach (string key in settingsKeys.Keys)
+            foreach (string key in keyCollection.Keys)
             {
                 _pageName = tabSettings.GetValueTabName(key);
                 _filePath = tabSettings.GetValueDashboardPath(key);
