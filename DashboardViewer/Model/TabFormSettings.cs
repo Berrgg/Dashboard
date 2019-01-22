@@ -12,11 +12,19 @@ namespace MyApp.Model
         private static Configuration _configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         private readonly KeyValueConfigurationCollection _settings;
 
+        public TabFormSettings()
+        {
 
+        }
         public TabFormSettings(string sectionName)
         {
             _valueCollection = ConfigurationManager.GetSection(sectionName) as NameValueCollection;
             _settings = ((AppSettingsSection)_configFile.GetSection(sectionName)).Settings;
+        }
+
+        public void Add(string keyName, string keyValue)
+        {
+            _valueCollection.Add(keyName, keyValue);
         }
         public void AddUpdateKey(string keyName, ISettingsValue value)
         {
