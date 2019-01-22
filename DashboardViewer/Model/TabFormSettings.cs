@@ -16,6 +16,11 @@ namespace MyApp.Model
         {
 
         }
+
+        public TabFormSettings(NameValueCollection nameValueCollection)
+        {
+            _valueCollection = nameValueCollection;
+        }
         public TabFormSettings(string sectionName)
         {
             _valueCollection = ConfigurationManager.GetSection(sectionName) as NameValueCollection;
