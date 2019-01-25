@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,9 @@ namespace DashboardViewer.Model
             return _settingsForm.IsFormValid();
         }
 
-        public ISettingsForm SettingsForm()
+        public NameValueCollection KeyValueCollection()
         {
-            return _settingsForm;
+            return _settingsForm.KeyValueCollection();
         }
     }
 }

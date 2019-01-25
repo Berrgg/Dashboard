@@ -10,12 +10,14 @@ using DevExpress.XtraEditors.DXErrorProvider;
 using DashboardViewer.View;
 using DashboardViewer.Model;
 using MyApp.Model;
+using System.Collections.Specialized;
 
 namespace MyApp.View
 {
     public class NewTabForm : XtraUserControl, ISettingsForm
     {
         private bool _isFormValid;
+        private NameValueCollection _keyCollection;
         public string FilePath { get; private set; }
         public string PageName { get; private set; }
         public string KeyName { get; private set; }
@@ -119,6 +121,8 @@ namespace MyApp.View
                 var keyName = (settings.GiveMaxKeyValue() + 1).ToString();
                 KeyName = keyName;
                 settings.AddUpdateKey(keyName, settingsValue);
+
+                _keyCollection.Add(keyName, settingsValue.GetSettingsValue());
             }
         }
 
@@ -127,14 +131,10 @@ namespace MyApp.View
             return _isFormValid;
         }
 
-        public string GetSettingsKey()
+        public NameValueCollection KeyValueCollection()
         {
-            throw new NotImplementedException();
+            return _keyCollection;
         }
 
-        public string GetSettingsValue()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

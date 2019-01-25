@@ -50,7 +50,7 @@ namespace MyApp
                 formEngine.Run();
 
                 if (formEngine.IsFormValid() == true)
-                    AddPageSettings(formEngine.SettingsKey(), formEngine.SettingsValue());
+                    AddTabFormPages(formEngine.KeyValueCollection());
                 else
                     _canAddNewPage = false;
             }
@@ -58,13 +58,6 @@ namespace MyApp
             {
                 _canAddNewPage = false;
             }
-        }
-
-        private void AddPageSettings(string keyName, string keyValue)
-        {
-            _key = keyName;
-            _pageName = pageName;
-            _filePath = filePath;
         }
 
         private void AddTabFormPages(NameValueCollection keyCollection)
