@@ -27,6 +27,8 @@ namespace MyApp.View
 
         public NewTabForm()
         {
+            _keyCollection = new NameValueCollection();
+
             textEditPath.Click += new EventHandler(textEditPath_Click);
             textEditName.Leave += new EventHandler(textEdit_Leave);
             textEditName.Validating += new CancelEventHandler(textEditName_Validating);
