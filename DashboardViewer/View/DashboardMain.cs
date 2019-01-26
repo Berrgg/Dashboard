@@ -35,11 +35,6 @@ namespace MyApp
             OpenFormCount++;
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            CreatePopUpForm();
-        }
-
         private void CreatePopUpForm()
         {
             NewTabForm newTab = new NewTabForm();
