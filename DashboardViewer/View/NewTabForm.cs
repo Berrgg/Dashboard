@@ -73,6 +73,7 @@ namespace MyApp.View
         private void textEdit_Leave(object sender, EventArgs e)
         {
             (sender as TextEdit).DoValidate();
+            PageName = textEditName.Text;
         }
 
         private void textEditPath_Click(object sender, EventArgs e)
@@ -88,7 +89,6 @@ namespace MyApp.View
                 try
                 {
                     FilePath = dialog.InitialDirectory + dialog.FileName;
-                    PageName = textEditName.Text;
 
                     textEditPath.Text = FilePath;
                 }
