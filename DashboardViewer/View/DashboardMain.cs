@@ -50,7 +50,16 @@ namespace MyApp
                 formEngine.Run();
 
                 if (formEngine.IsFormValid() == true)
-                    AddTabFormPages(formEngine.KeyValueCollection());
+                {
+                    var tabSettings = new TabFormSettings(formEngine.KeyValueCollection());
+
+                    foreach (string key in formEngine.KeyValueCollection().Keys)
+                    {
+                        _pageName = tabSettings.GetValueTabName(key);
+                        _filePath = tabSettings.GetValueDashboardPath(key);
+                        _key = key;
+                    }
+                }
                 else
                     _canAddNewPage = false;
             }
