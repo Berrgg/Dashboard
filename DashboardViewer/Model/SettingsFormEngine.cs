@@ -22,7 +22,7 @@ namespace DashboardViewer.Model
 
         public bool IsFormValid()
         {
-            return _settingsForm.IsFormValid();
+            return _settingsForm.IsFormValid;
         }
 
         public NameValueCollection KeyValueCollection()
