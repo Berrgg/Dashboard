@@ -17,6 +17,12 @@ namespace MyApp.View
     public class NewTabForm : XtraUserControl, ISettingsForm
     {
         private bool _isFormValid;
+        public bool IsFormValid
+        {
+            get { return _isFormValid; }
+            set { _isFormValid = value; }
+        }
+
         private NameValueCollection _keyCollection;
         public string FilePath { get; private set; }
         public string PageName { get; private set; }
@@ -126,11 +132,6 @@ namespace MyApp.View
 
                 _keyCollection.Add(keyName, settingsValue.GetSettingsValue());
             }
-        }
-
-        public bool IsFormValid()
-        {
-            return _isFormValid;
         }
 
         public NameValueCollection KeyValueCollection()
