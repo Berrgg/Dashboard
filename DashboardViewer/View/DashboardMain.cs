@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DevExpress.DashboardCommon;
 using DashboardViewer.Model;
 using System.Collections.Specialized;
+using DashboardViewer.View;
 
 namespace MyApp
 {
@@ -26,6 +27,10 @@ namespace MyApp
 
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
+
+            SettingsForm settingsForm = new SettingsForm();
+            SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
+            XtraDialog.Show(settingsForm, "Settings", MessageBoxButtons.OK);
         }
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
