@@ -20,7 +20,7 @@ namespace MyApp.View
         public bool IsFormValid
         {
             get { return _isFormValid; }
-            set { _isFormValid = value; }
+            private set { _isFormValid = value; }
         }
 
         private NameValueCollection _keyCollection;
@@ -108,9 +108,9 @@ namespace MyApp.View
         public void ValidForm()
         {
             if (PageName == null || FilePath == null)
-                _isFormValid = false;
+                IsFormValid = false;
             else
-                _isFormValid = true;
+                IsFormValid = true;
         }
 
         public void Execute()
