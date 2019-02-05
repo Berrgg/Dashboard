@@ -13,6 +13,8 @@ namespace DashboardViewer.View
 {
     public class SettingsForm : XtraUserControl, ISettingsForm
     {
+        public bool IsFormValid { get; private set; }
+        public NameValueCollection KeyValueCollection { get; private set; }
         private TextEdit textEditRefresh = new TextEdit() { Name = "textEditRefresh" };
         private ToggleSwitch toggleSwitchAutoRefresh = new ToggleSwitch() { Name = "toggleSwitchAutoRefresh"};
         private ToggleSwitch toggleSwitchAutoRotate = new ToggleSwitch() { Name = "toggleSwitchAutoRefresh" };
@@ -30,17 +32,8 @@ namespace DashboardViewer.View
             Dock = DockStyle.None;
             Width = 500;
         }
+
         public void Execute()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsFormValid()
-        {
-            throw new NotImplementedException();
-        }
-
-        public NameValueCollection KeyValueCollection()
         {
             throw new NotImplementedException();
         }
