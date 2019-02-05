@@ -15,6 +15,8 @@ namespace DashboardViewer.View
     {
         public bool IsFormValid { get; private set; }
         public NameValueCollection KeyValueCollection { get; private set; }
+        private int _refreshTime;
+
         private TextEdit textEditRefresh = new TextEdit() { Name = "textEditRefresh" };
         private ToggleSwitch toggleSwitchAutoRefresh = new ToggleSwitch() { Name = "toggleSwitchAutoRefresh"};
         private ToggleSwitch toggleSwitchAutoRotate = new ToggleSwitch() { Name = "toggleSwitchAutoRefresh" };
@@ -40,7 +42,10 @@ namespace DashboardViewer.View
 
         public void ValidForm()
         {
-            throw new NotImplementedException();
+            if (int.TryParse(textEditRefresh.Text, out _refreshTime))
+                IsFormValid = true;
+            else
+                IsFormValid = false;
         }
     }
 }
