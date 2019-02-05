@@ -18,7 +18,7 @@ namespace MyApp.View
     {
         public bool IsFormValid { get; private set; }
 
-        private NameValueCollection _keyCollection;
+        public NameValueCollection KeyValueCollection { get; private set; }
         public string FilePath { get; private set; }
         public string PageName { get; private set; }
         public string KeyName { get; private set; }
@@ -28,7 +28,7 @@ namespace MyApp.View
 
         public NewTabForm()
         {
-            _keyCollection = new NameValueCollection();
+            KeyValueCollection = new NameValueCollection();
 
             textEditPath.Click += new EventHandler(textEditPath_Click);
             textEditName.Leave += new EventHandler(textEdit_Leave);
@@ -125,14 +125,14 @@ namespace MyApp.View
                 KeyName = keyName;
                 settings.AddUpdateKey(keyName, settingsValue);
 
-                _keyCollection.Add(keyName, settingsValue.GetSettingsValue());
+                KeyValueCollection.Add(keyName, settingsValue.GetSettingsValue());
             }
         }
 
-        public NameValueCollection KeyValueCollection()
-        {
-            return _keyCollection;
-        }
+        //public NameValueCollection KeyValueCollection()
+        //{
+        //    return _keyCollection;
+        //}
 
     }
 }
