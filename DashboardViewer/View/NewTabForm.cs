@@ -4,10 +4,6 @@ using System;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DevExpress.XtraEditors.DXErrorProvider;
-using DashboardViewer.View;
 using DashboardViewer.Model;
 using MyApp.Model;
 using System.Collections.Specialized;
@@ -128,11 +124,5 @@ namespace MyApp.View
                 KeyValueCollection.Add(keyName, settingsValue.GetSettingsValue());
             }
         }
-
-        //public NameValueCollection KeyValueCollection()
-        //{
-        //    return _keyCollection;
-        //}
-
     }
 }
