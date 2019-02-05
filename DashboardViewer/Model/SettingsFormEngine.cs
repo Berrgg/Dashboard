@@ -27,7 +27,7 @@ namespace DashboardViewer.Model
 
         public NameValueCollection KeyValueCollection()
         {
-            return _settingsForm.KeyValueCollection();
+            return _settingsForm.KeyValueCollection;
         }
     }
 }
