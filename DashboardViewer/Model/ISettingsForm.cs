@@ -10,7 +10,7 @@ namespace DashboardViewer.Model
     public interface ISettingsForm
     {
         bool IsFormValid { get;}
-        NameValueCollection KeyValueCollection();
+        NameValueCollection KeyValueCollection { get; }
         void ValidForm();
         void Execute();
     }
