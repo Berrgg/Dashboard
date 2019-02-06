@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyApp.Model;
+using System.ComponentModel;
 
 namespace DashboardViewer.View
 {
@@ -31,6 +32,9 @@ namespace DashboardViewer.View
             textEditRotate.Text = settings.GetValue("RotateTime");
             toggleSwitchAutoRefresh.EditValue = bool.Parse(settings.GetValue("AutoRefresh"));
             toggleSwitchAutoRotate.EditValue = bool.Parse(settings.GetValue("AutoRotate"));
+
+            textEditRefresh.Validating += new CancelEventHandler(TextBox_Validating);
+            textEditRotate.Validating += new CancelEventHandler(TextBox_Validating);
 
             var lc = new LayoutControl();
             lc.Dock = DockStyle.Fill;
@@ -55,6 +59,20 @@ namespace DashboardViewer.View
                 IsFormValid = true;
             else
                 IsFormValid = false;
+        }
+
+        private void TextBox_Validating(object sender, CancelEventArgs e)
+        {
+            var textBox = (sender as TextEdit);
+            textBox.ErrorText = "Field cannot be empty or value less than 0";
+
+            var value = textBox.Text;
+
+            if (value == string.Empty || !uint.TryParse(value, out uint valueOut))
+                e.Cancel = true;
+            else
+                textBox.ErrorText = string.Empty;
+
         }
     }
 }
