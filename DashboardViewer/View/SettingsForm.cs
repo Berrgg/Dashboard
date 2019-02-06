@@ -16,8 +16,10 @@ namespace DashboardViewer.View
         public bool IsFormValid { get; private set; }
         public NameValueCollection KeyValueCollection { get; private set; }
         private uint _refreshTime;
+        private uint _rotateTime;
 
         private TextEdit textEditRefresh = new TextEdit() { Name = "textEditRefresh" };
+        private TextEdit textEditRotate = new TextEdit() { Name = "textEditRotate" };
         private ToggleSwitch toggleSwitchAutoRefresh = new ToggleSwitch() { Name = "toggleSwitchAutoRefresh"};
         private ToggleSwitch toggleSwitchAutoRotate = new ToggleSwitch() { Name = "toggleSwitchAutoRefresh" };
 
@@ -28,6 +30,7 @@ namespace DashboardViewer.View
             lc.Dock = DockStyle.Fill;
             lc.AddItem("Dashboard refresh time (in seconds):", textEditRefresh).TextVisible=true;
             lc.AddItem("Dashboard auto refresh:", toggleSwitchAutoRefresh).TextVisible = true;
+            lc.AddItem("Rotate time between dashboards:", textEditRotate).TextVisible = true;
             lc.AddItem("Auto rotate between dashboards:", toggleSwitchAutoRotate).TextVisible = true;
 
             Controls.Add(lc);
@@ -42,7 +45,7 @@ namespace DashboardViewer.View
 
         public void ValidForm()
         {
-            if (uint.TryParse(textEditRefresh.Text, out _refreshTime))
+            if (uint.TryParse(textEditRefresh.Text, out _refreshTime) && uint.TryParse(textEditRotate.Text,out _rotateTime))
                 IsFormValid = true;
             else
                 IsFormValid = false;
