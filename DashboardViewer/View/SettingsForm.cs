@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyApp.Model;
 
 namespace DashboardViewer.View
 {
@@ -25,12 +26,17 @@ namespace DashboardViewer.View
 
         public SettingsForm()
         {
+            var settings = new TabFormSettings("GeneralAppSettings");
+            textEditRefresh.Text = settings.GetValue("RefreshTime");
+            textEditRotate.Text = settings.GetValue("RotateTime");
+            toggleSwitchAutoRefresh.EditValue = bool.Parse(settings.GetValue("AutoRefresh"));
+            toggleSwitchAutoRotate.EditValue = bool.Parse(settings.GetValue("AutoRotate"));
 
             var lc = new LayoutControl();
             lc.Dock = DockStyle.Fill;
             lc.AddItem("Dashboard refresh time (in seconds):", textEditRefresh).TextVisible=true;
             lc.AddItem("Dashboard auto refresh:", toggleSwitchAutoRefresh).TextVisible = true;
-            lc.AddItem("Rotate time between dashboards:", textEditRotate).TextVisible = true;
+            lc.AddItem("Rotate time between dashboards (in seconds):", textEditRotate).TextVisible = true;
             lc.AddItem("Auto rotate between dashboards:", toggleSwitchAutoRotate).TextVisible = true;
 
             Controls.Add(lc);
