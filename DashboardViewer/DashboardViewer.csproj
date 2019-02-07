@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AppSettingsValue.cs" />
     <Compile Include="Model\ISettingsForm.cs" />
     <Compile Include="Model\SettingsFormEngine.cs" />
     <Compile Include="View\DashboardMain.cs">
