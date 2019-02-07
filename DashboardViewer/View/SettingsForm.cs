@@ -50,7 +50,25 @@ namespace DashboardViewer.View
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            ValidForm();
+
+            if (IsFormValid == false)
+            {
+                XtraMessageBox.Show("Fields cannot be empty or below 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                var refreshValue = new AppSettingsValue(textEditRefresh.Text);
+                var rotateValue = new AppSettingsValue(textEditRotate.Text);
+                var autoRefreshValue = new AppSettingsValue(toggleSwitchAutoRefresh.EditValue.ToString());
+                var autoRotateValue = new AppSettingsValue(toggleSwitchAutoRotate.EditValue.ToString());
+
+                TabFormSettings settings = new TabFormSettings("GeneralAppSettings");
+                settings.AddUpdateKey("RefreshTime", refreshValue);
+                settings.AddUpdateKey("RotateTime", rotateValue);
+                settings.AddUpdateKey("AutoRotate", autoRotateValue);
+                settings.AddUpdateKey("AutoRefresh", autoRefreshValue);
+            }
         }
 
         public void ValidForm()
