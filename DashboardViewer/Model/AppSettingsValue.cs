@@ -8,7 +8,7 @@ namespace DashboardViewer.Model
 
         public AppSettingsValue(string value)
         {
-            _settingsValue=value
+            _settingsValue = value;
         }
         public string GetSettingsValue()
         {
