@@ -1,8 +1,6 @@
 ﻿using MyApp.Model;
 using MyApp.View;
 using DevExpress.XtraBars;
-using DevExpress.XtraEditors;
-using DevExpress.DashboardWin;
 using System;
 using System.Windows.Forms;
 using DevExpress.DashboardCommon;
@@ -12,7 +10,7 @@ using DashboardViewer.View;
 
 namespace MyApp
 {
-    public partial class DashboardMain : DevExpress.XtraBars.TabForm
+    public partial class DashboardMain : TabForm
     {
         static int OpenFormCount = 1;
         private string _pageName;
@@ -125,7 +123,6 @@ namespace MyApp
             SettingsForm settingsForm = new SettingsForm();
             SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
             engine.Run();
-           // XtraDialog.Show(settingsForm, "Settings", MessageBoxButtons.OK);
         }
     }
 }
