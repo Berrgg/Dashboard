@@ -142,5 +142,10 @@ namespace MyApp
                     _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
             }
         }
+
+        private void BarButtonRefresh_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            RefreshDashboard(_viewer);
+        }
     }
 }

@@ -37,6 +37,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barButtonRefresh = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl_Main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +46,8 @@
             // 
             this.tabFormControl_Main.AllowMoveTabsToOuterForm = false;
             this.tabFormControl_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonSettings});
+            this.barButtonSettings,
+            this.barButtonRefresh});
             this.tabFormControl_Main.Location = new System.Drawing.Point(0, 0);
             this.tabFormControl_Main.Manager = this.tabFormDefaultManager1;
             this.tabFormControl_Main.Name = "tabFormControl_Main";
@@ -54,6 +56,7 @@
             this.tabFormControl_Main.Size = new System.Drawing.Size(821, 40);
             this.tabFormControl_Main.TabForm = this;
             this.tabFormControl_Main.TabIndex = 0;
+            this.tabFormControl_Main.TabRightItemLinks.Add(this.barButtonRefresh);
             this.tabFormControl_Main.TabRightItemLinks.Add(this.barButtonSettings);
             this.tabFormControl_Main.TabStop = false;
             this.tabFormControl_Main.PageCreated += new DevExpress.XtraBars.PageCreatedEventHandler(this.tabFormControl_Main_PageCreated);
@@ -79,8 +82,9 @@
             this.tabFormDefaultManager1.DockingEnabled = false;
             this.tabFormDefaultManager1.Form = this;
             this.tabFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonSettings});
-            this.tabFormDefaultManager1.MaxItemId = 1;
+            this.barButtonSettings,
+            this.barButtonRefresh});
+            this.tabFormDefaultManager1.MaxItemId = 2;
             // 
             // barDockControlTop
             // 
@@ -114,6 +118,15 @@
             this.barDockControlRight.Manager = null;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
             // 
+            // barButtonRefresh
+            // 
+            this.barButtonRefresh.Caption = "Refresh dashboard";
+            this.barButtonRefresh.Id = 1;
+            this.barButtonRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonRefresh.ImageOptions.Image")));
+            this.barButtonRefresh.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonRefresh.ImageOptions.LargeImage")));
+            this.barButtonRefresh.Name = "barButtonRefresh";
+            this.barButtonRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonRefresh_ItemClick);
+            // 
             // DashboardMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,6 +158,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonSettings;
+        private DevExpress.XtraBars.BarButtonItem barButtonRefresh;
     }
 }
 
