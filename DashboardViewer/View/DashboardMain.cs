@@ -84,7 +84,8 @@ namespace MyApp
 
         private void RefreshDashboard(DevExpress.DashboardWin.DashboardViewer dashboardViewer)
         {
-            dashboardViewer.ReloadData(true);
+            if (_viewer != null)
+                dashboardViewer.ReloadData(true);
         }
 
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
