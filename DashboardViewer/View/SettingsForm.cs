@@ -15,6 +15,8 @@ namespace DashboardViewer.View
 {
     public class SettingsForm : XtraUserControl, ISettingsForm
     {
+        public string FormName { get; private set; } = "Settings";
+        public MessageBoxButtons FormButtons { get; private set; } = MessageBoxButtons.OKCancel;
         public bool IsFormValid { get; private set; }
         public NameValueCollection KeyValueCollection { get; private set; }
         private uint _refreshTime;

@@ -12,8 +12,9 @@ namespace MyApp.View
 {
     public class NewTabForm : XtraUserControl, ISettingsForm
     {
+        public string FormName { get; private set; } = "Add new dashboard";
+        public MessageBoxButtons FormButtons { get; private set; } = MessageBoxButtons.OK;
         public bool IsFormValid { get; private set; }
-
         public NameValueCollection KeyValueCollection { get; private set; }
         public string FilePath { get; private set; }
         public string PageName { get; private set; }
