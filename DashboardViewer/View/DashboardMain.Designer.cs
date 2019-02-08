@@ -111,6 +111,7 @@
             this.barButtonSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.Image")));
             this.barButtonSettings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.LargeImage")));
             this.barButtonSettings.Name = "barButtonSettings";
+            this.barButtonSettings.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonSettings_ItemClick);
             // 
             // DashboardMain
             // 

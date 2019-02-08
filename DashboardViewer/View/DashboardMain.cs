@@ -27,10 +27,6 @@ namespace MyApp
 
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
-
-            SettingsForm settingsForm = new SettingsForm();
-            SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
-            XtraDialog.Show(settingsForm, "Settings", MessageBoxButtons.OK);
         }
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
@@ -131,5 +127,11 @@ namespace MyApp
             e.Handled = true;
         }
 
+        private void BarButtonSettings_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
+            XtraDialog.Show(settingsForm, "Settings", MessageBoxButtons.OK);
+        }
     }
 }
