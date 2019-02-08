@@ -41,28 +41,21 @@ namespace MyApp
             NewTabForm newTab = new NewTabForm();
             SettingsFormEngine formEngine = new SettingsFormEngine(newTab);
 
-            if(XtraDialog.Show(newTab, "Add new dashboard", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            formEngine.Run();
+
+            if (formEngine.IsFormValid() == true)
             {
-                formEngine.Run();
+                var tabSettings = new TabFormSettings(formEngine.KeyValueCollection());
 
-                if (formEngine.IsFormValid() == true)
+                foreach (string key in formEngine.KeyValueCollection().Keys)
                 {
-                    var tabSettings = new TabFormSettings(formEngine.KeyValueCollection());
-
-                    foreach (string key in formEngine.KeyValueCollection().Keys)
-                    {
-                        _pageName = tabSettings.GetValueTabName(key);
-                        _filePath = tabSettings.GetValueDashboardPath(key);
-                        _key = key;
-                    }
+                    _pageName = tabSettings.GetValueTabName(key);
+                    _filePath = tabSettings.GetValueDashboardPath(key);
+                    _key = key;
                 }
-                else
-                    _canAddNewPage = false;
             }
             else
-            {
                 _canAddNewPage = false;
-            }
         }
 
         private void AddTabFormPages(NameValueCollection keyCollection)
@@ -131,7 +124,8 @@ namespace MyApp
         {
             SettingsForm settingsForm = new SettingsForm();
             SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
-            XtraDialog.Show(settingsForm, "Settings", MessageBoxButtons.OK);
+            engine.Run();
+           // XtraDialog.Show(settingsForm, "Settings", MessageBoxButtons.OK);
         }
     }
 }

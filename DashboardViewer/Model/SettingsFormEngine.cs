@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -17,7 +18,11 @@ namespace DashboardViewer.Model
         }
         public void Run()
         {
-            _settingsForm.Execute();
+            if (XtraDialog.Show((XtraUserControl)_settingsForm, _settingsForm.FormName, _settingsForm.FormButtons)== System.Windows.Forms.DialogResult.OK)
+            {
+                _settingsForm.Execute();
+            }
+            
         }
 
         public bool IsFormValid()
