@@ -30,8 +30,8 @@ namespace DashboardViewer.View
         public SettingsForm()
         {
             var settings = new TabFormSettings("GeneralAppSettings");
-            textEditRefresh.Text = settings.GetValue("RefreshTime");
-            textEditRotate.Text = settings.GetValue("RotateTime");
+            textEditRefresh.EditValue = settings.GetValue("RefreshTime");
+            textEditRotate.EditValue = settings.GetValue("RotateTime");
             toggleSwitchAutoRefresh.EditValue = bool.Parse(settings.GetValue("AutoRefresh"));
             toggleSwitchAutoRotate.EditValue = bool.Parse(settings.GetValue("AutoRotate"));
 
