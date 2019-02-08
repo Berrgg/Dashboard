@@ -11,6 +11,7 @@ namespace MyApp.Model
         private readonly NameValueCollection _valueCollection;
         private static Configuration _configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         private readonly KeyValueConfigurationCollection _settings;
+        private string _sectionName;
 
         public TabFormSettings(NameValueCollection nameValueCollection)
         {
@@ -18,6 +19,7 @@ namespace MyApp.Model
         }
         public TabFormSettings(string sectionName)
         {
+            _sectionName = sectionName;
             _valueCollection = ConfigurationManager.GetSection(sectionName) as NameValueCollection;
             _settings = ((AppSettingsSection)_configFile.GetSection(sectionName)).Settings;
         }
@@ -35,7 +37,9 @@ namespace MyApp.Model
                     _settings[keyName].Value = value.GetSettingsValue();
                 }
                 _configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(_configFile.AppSettings.SectionInformation.Name);
+
+                //ConfigurationManager.RefreshSection(_configFile.AppSettings.SectionInformation.Name);
+                ConfigurationManager.RefreshSection(_sectionName);
             }
             catch (ConfigurationErrorsException)
             {
