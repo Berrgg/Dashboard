@@ -29,12 +29,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardMain));
             this.tabFormControl_Main = new DevExpress.XtraBars.TabFormControl();
             this.tabFormDefaultManager1 = new DevExpress.XtraBars.TabFormDefaultManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barButtonSettings = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl_Main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.SuspendLayout();
@@ -42,13 +44,17 @@
             // tabFormControl_Main
             // 
             this.tabFormControl_Main.AllowMoveTabsToOuterForm = false;
+            this.tabFormControl_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonSettings});
             this.tabFormControl_Main.Location = new System.Drawing.Point(0, 0);
             this.tabFormControl_Main.Manager = this.tabFormDefaultManager1;
             this.tabFormControl_Main.Name = "tabFormControl_Main";
             this.tabFormControl_Main.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
+            this.tabFormControl_Main.ShowToolTips = DevExpress.Utils.DefaultBoolean.True;
             this.tabFormControl_Main.Size = new System.Drawing.Size(821, 40);
             this.tabFormControl_Main.TabForm = this;
             this.tabFormControl_Main.TabIndex = 0;
+            this.tabFormControl_Main.TabRightItemLinks.Add(this.barButtonSettings);
             this.tabFormControl_Main.TabStop = false;
             this.tabFormControl_Main.PageCreated += new DevExpress.XtraBars.PageCreatedEventHandler(this.tabFormControl_Main_PageCreated);
             this.tabFormControl_Main.PageClosed += new DevExpress.XtraBars.PageClosedEventHandler(this.TabFormControl_Main_PageClosed);
@@ -62,6 +68,9 @@
             this.tabFormDefaultManager1.DockControls.Add(this.barDockControlRight);
             this.tabFormDefaultManager1.DockingEnabled = false;
             this.tabFormDefaultManager1.Form = this;
+            this.tabFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonSettings});
+            this.tabFormDefaultManager1.MaxItemId = 1;
             // 
             // barDockControlTop
             // 
@@ -95,6 +104,14 @@
             this.barDockControlRight.Manager = null;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
             // 
+            // barButtonSettings
+            // 
+            this.barButtonSettings.Caption = "Application settings";
+            this.barButtonSettings.Id = 0;
+            this.barButtonSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.Image")));
+            this.barButtonSettings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.LargeImage")));
+            this.barButtonSettings.Name = "barButtonSettings";
+            // 
             // DashboardMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -125,6 +142,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem barButtonSettings;
     }
 }
 
