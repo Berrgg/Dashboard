@@ -18,6 +18,7 @@ namespace MyApp
         private string _key;
         private bool _isNewPage =  true;
         private bool _canAddNewPage = true;
+        private DevExpress.DashboardWin.DashboardViewer _viewer;
 
         public DashboardMain()
         {
@@ -90,6 +91,7 @@ namespace MyApp
                 viewer.DashboardSource = @"" + _filePath;
 
                 e.Page.ContentContainer.Controls.Add(viewer);
+                _viewer = viewer;
             }
             else
             {
@@ -123,6 +125,15 @@ namespace MyApp
             SettingsForm settingsForm = new SettingsForm();
             SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
             engine.Run();
+        }
+
+        private void TabFormControl_Main_SelectedPageChanged(object sender, TabFormSelectedPageChangedEventArgs e)
+        {
+            foreach (Control c in tabFormControl_Main.SelectedPage.ContentContainer.Controls)
+            {
+                if (c is DevExpress.DashboardWin.DashboardViewer)
+                    _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+            }
         }
     }
 }

@@ -31,12 +31,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardMain));
             this.tabFormControl_Main = new DevExpress.XtraBars.TabFormControl();
+            this.barButtonSettings = new DevExpress.XtraBars.BarButtonItem();
             this.tabFormDefaultManager1 = new DevExpress.XtraBars.TabFormDefaultManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonSettings = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl_Main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +58,17 @@
             this.tabFormControl_Main.TabStop = false;
             this.tabFormControl_Main.PageCreated += new DevExpress.XtraBars.PageCreatedEventHandler(this.tabFormControl_Main_PageCreated);
             this.tabFormControl_Main.PageClosed += new DevExpress.XtraBars.PageClosedEventHandler(this.TabFormControl_Main_PageClosed);
+            this.tabFormControl_Main.SelectedPageChanged += new DevExpress.XtraBars.TabFormSelectedPageChangedEventHandler(this.TabFormControl_Main_SelectedPageChanged);
             this.tabFormControl_Main.OuterFormCreating += new DevExpress.XtraBars.OuterFormCreatingEventHandler(this.OnOuterFormCreating);
+            // 
+            // barButtonSettings
+            // 
+            this.barButtonSettings.Caption = "Application settings";
+            this.barButtonSettings.Id = 0;
+            this.barButtonSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.Image")));
+            this.barButtonSettings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.LargeImage")));
+            this.barButtonSettings.Name = "barButtonSettings";
+            this.barButtonSettings.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonSettings_ItemClick);
             // 
             // tabFormDefaultManager1
             // 
@@ -103,15 +113,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(821, 40);
             this.barDockControlRight.Manager = null;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
-            // 
-            // barButtonSettings
-            // 
-            this.barButtonSettings.Caption = "Application settings";
-            this.barButtonSettings.Id = 0;
-            this.barButtonSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.Image")));
-            this.barButtonSettings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.LargeImage")));
-            this.barButtonSettings.Name = "barButtonSettings";
-            this.barButtonSettings.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonSettings_ItemClick);
             // 
             // DashboardMain
             // 
