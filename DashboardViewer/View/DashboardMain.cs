@@ -27,6 +27,7 @@ namespace MyApp
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
         }
+
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
             DashboardMain form = new DashboardMain();
@@ -75,6 +76,12 @@ namespace MyApp
             _isNewPage = true;
         }
 
+        private void DeleteSettingsKeyForClosePage(string keyName)
+        {
+            var tabSettings = new TabFormSettings("TabFormsConfiguration");
+            tabSettings.RemoveKey(keyName);
+        }
+
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
         {
             if (_isNewPage)
@@ -104,15 +111,10 @@ namespace MyApp
             }
             _canAddNewPage = true;
         }
+
         private void TabFormControl_Main_PageClosed(object sender, PageClosedEventArgs e)
         {
             DeleteSettingsKeyForClosePage(e.Page.Tag.ToString());
-        }
-
-        private void DeleteSettingsKeyForClosePage(string keyName)
-        {
-            var tabSettings = new TabFormSettings("TabFormsConfiguration");
-            tabSettings.RemoveKey(keyName);
         }
 
         private void DashboardLoadingError(object sender, DataLoadingErrorEventArgs e)
