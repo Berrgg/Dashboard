@@ -82,6 +82,11 @@ namespace MyApp
             tabSettings.RemoveKey(keyName);
         }
 
+        private void RefreshDashboard(DevExpress.DashboardWin.DashboardViewer dashboardViewer)
+        {
+            dashboardViewer.ReloadData(true);
+        }
+
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
         {
             if (_isNewPage)
