@@ -30,7 +30,7 @@ namespace DashboardViewer.Model
             }
         }
 
-        private async Task DashboardTimerElapsedAsync()
+        public async Task DashboardTimerElapsedAsync()
         {
             await Task.Run(() =>
             {
