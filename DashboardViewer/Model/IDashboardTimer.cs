@@ -1,4 +1,5 @@
 ﻿using System.Timers;
+using System.Threading.Tasks;
 
 namespace DashboardViewer.Model
 {
@@ -7,5 +8,7 @@ namespace DashboardViewer.Model
         Timer DashboardTimer { get;  }
 
         void Execute();
+
+        Task DashboardTimerElapsedAsync();
     }
 }
