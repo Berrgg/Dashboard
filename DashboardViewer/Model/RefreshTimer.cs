@@ -2,7 +2,6 @@
 using System.Timers;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
-using MyApp.Model;
 
 namespace DashboardViewer.Model
 {

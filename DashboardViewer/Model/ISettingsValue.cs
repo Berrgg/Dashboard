@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyApp.Model
+namespace DashboardViewer.Model
 {
     public interface ISettingsValue
     {

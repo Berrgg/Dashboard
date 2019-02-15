@@ -1,14 +1,12 @@
-﻿using MyApp.Model;
-using MyApp.View;
+﻿using DashboardViewer.Model;
 using DevExpress.XtraBars;
 using System;
 using System.Windows.Forms;
 using DevExpress.DashboardCommon;
-using DashboardViewer.Model;
 using System.Collections.Specialized;
 using DashboardViewer.View;
 
-namespace MyApp
+namespace DashboardViewer
 {
     public partial class DashboardMain : TabForm
     {
