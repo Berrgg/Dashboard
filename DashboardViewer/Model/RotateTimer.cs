@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using DevExpress.XtraBars;
 using MyApp.Model;
@@ -11,17 +7,16 @@ namespace DashboardViewer.Model
 {
     public class RotateTimer : IDashboardTimer
     {
-        private TabFormControl _tabFormControl;
-        public Timer DashboardTimer { get; private set; }
-        public DevExpress.DashboardWin.DashboardViewer Viewer { get; set; }
+        public TabFormControl _tabFormControl { get; set; }
 
-        public RotateTimer(TabFormControl tabFormControl, DevExpress.DashboardWin.DashboardViewer viewer)
+        public Timer DashboardTimer { get; private set; }
+
+        public RotateTimer(TabFormControl tabFormControl)
         {
             _tabFormControl = tabFormControl;
-            Viewer = viewer;
 
-            Timer DashboardTimer = new Timer();
-            DashboardTimer.Elapsed += async (sender, e) => await DashboardTimerElapsedAsync();
+            DashboardTimer = new Timer();
+            DashboardTimer.Elapsed += DashboardTimerElapsed;
             DashboardTimer.Enabled = true;
         }
         public void Execute()
@@ -37,27 +32,28 @@ namespace DashboardViewer.Model
             }
         }
 
-        public async Task DashboardTimerElapsedAsync()
+        public void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            await Task.Run(() =>
+            var index = 0;
+            var pageIndex = _tabFormControl.Pages.IndexOf(_tabFormControl.SelectedPage);
+            var maxIndex = _tabFormControl.Pages.Count - 1;
+
+            if (maxIndex > 0)
             {
-                var index = 0;
-                var pageIndex = _tabFormControl.Pages.IndexOf(_tabFormControl.SelectedPage);
-                var maxIndex = _tabFormControl.Pages.Count - 1;
-
-                if (maxIndex > 0)
-                {
-                    if (pageIndex == maxIndex)
-                        index = 0;
-                    else
-                        index += 1;
-                }
-                else
+                if (pageIndex == maxIndex)
                     index = 0;
+                else
+                    index += 1;
+            }
+            else
+            {
+                index = 0;
+            }
 
+            _tabFormControl.BeginInvoke(new Action(() =>
+            {
                 _tabFormControl.SelectedPage = _tabFormControl.Pages[index];
-
-            });
+            }));
         }
     }
 }

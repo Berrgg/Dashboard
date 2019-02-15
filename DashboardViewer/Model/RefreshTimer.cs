@@ -1,22 +1,26 @@
-﻿using MyApp.Model;
+﻿using System;
 using System.Timers;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraBars;
+using MyApp.Model;
 
 namespace DashboardViewer.Model
 {
     public class RefreshTimer : IDashboardTimer
     {
         private DevExpress.DashboardWin.DashboardViewer _viewer;
-        public Timer DashboardTimer { get; private set; }
+        public System.Timers.Timer DashboardTimer { get; private set; }
+        public TabFormControl _tabFormControl { get; set; }
 
-        public RefreshTimer(DevExpress.DashboardWin.DashboardViewer viewer)
+        public RefreshTimer(TabFormControl tabForm)
         {
-            _viewer = viewer;
-            Timer DashboardTimer = new Timer();
-            DashboardTimer.Elapsed += async (sender, e) => await DashboardTimerElapsedAsync();
+            _tabFormControl = tabForm;
+
+            DashboardTimer = new System.Timers.Timer();
+            DashboardTimer.Elapsed += DashboardTimerElapsed;
             DashboardTimer.Enabled = true;
         }
-
+            
         public void Execute()
         {
             var settings = new TabFormSettings("GeneralAppSettings");
@@ -30,12 +34,18 @@ namespace DashboardViewer.Model
             }
         }
 
-        public async Task DashboardTimerElapsedAsync()
+        public void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            await Task.Run(() =>
+            _tabFormControl.BeginInvoke(new Action(() =>
             {
+                foreach (Control c in _tabFormControl.SelectedPage.ContentContainer.Controls)
+                {
+                    if (c is DevExpress.DashboardWin.DashboardViewer)
+                        _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                }
+
                 _viewer.ReloadData(true);
-            });
+            }));
         }
     }
 }
