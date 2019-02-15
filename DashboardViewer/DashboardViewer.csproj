@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\AppSettingsValue.cs" />
+    <Compile Include="Model\BaseTimer.cs" />
     <Compile Include="Model\IDashboardTimer.cs" />
     <Compile Include="Model\ISettingsForm.cs" />
     <Compile Include="Model\RefreshTimer.cs" />
