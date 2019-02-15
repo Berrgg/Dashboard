@@ -13,20 +13,17 @@ namespace DashboardViewer.Model
         {
             TabFormControl = tabForm;
 
+            AppSettingsSectionName = "GeneralAppSettings";
+            IsTimerEnabledKey = "AutoRefresh";
+            TimerIntervalKey = "RefreshTime";
+
             SetTimer();
         }
 
         public void Execute()
         {
-            var settings = new TabFormSettings("GeneralAppSettings");
-            var isEnabled = bool.Parse(settings.GetValue("AutoRefresh"));
-
-            if (isEnabled)
-            {
-                var reloadTime = int.Parse(settings.GetValue("RefreshTime"))*1000;
-                DashboardTimer.Interval = reloadTime;
+            if (IsTimerEnabled)
                 DashboardTimer.Start();
-            }
         }
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)

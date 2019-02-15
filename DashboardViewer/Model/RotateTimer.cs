@@ -10,19 +10,16 @@ namespace DashboardViewer.Model
         {
             TabFormControl = tabFormControl;
 
+            AppSettingsSectionName = "GeneralAppSettings";
+            IsTimerEnabledKey = "AutoRotate";
+            TimerIntervalKey = "RotateTime";
+
             SetTimer();
         }
         public void Execute()
         {
-            var settings = new TabFormSettings("GeneralAppSettings");
-            var isEnabled = bool.Parse(settings.GetValue("AutoRotate"));
-
-            if (isEnabled)
-            {
-                var reloadTime = int.Parse(settings.GetValue("RotateTime")) * 1000;
-                DashboardTimer.Interval = reloadTime;
+            if (IsTimerEnabled)
                 DashboardTimer.Start();
-            }
         }
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
