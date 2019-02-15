@@ -19,8 +19,6 @@ namespace MyApp
         private bool _isNewPage =  true;
         private bool _canAddNewPage = true;
         private DevExpress.DashboardWin.DashboardViewer _viewer;
-        public RotateTimer RotateTimer { get; set; }
-        public RefreshTimer RefreshTimer { get; set; }
 
         public DashboardMain()
         {
@@ -28,13 +26,6 @@ namespace MyApp
 
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
-
-            RotateTimer = new RotateTimer(tabFormControl_Main);
-            RotateTimer.Execute();
-
-            //RefreshTimer = new RefreshTimer(tabFormControl_Main);
-            //RefreshTimer.Execute();
-
         }
 
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
