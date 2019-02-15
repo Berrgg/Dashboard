@@ -5,19 +5,13 @@ using MyApp.Model;
 
 namespace DashboardViewer.Model
 {
-    public class RotateTimer : IDashboardTimer
+    public class RotateTimer : BaseTimer, IDashboardTimer
     {
-        public TabFormControl _tabFormControl { get; set; }
-
-        public Timer DashboardTimer { get; private set; }
-
         public RotateTimer(TabFormControl tabFormControl)
         {
-            _tabFormControl = tabFormControl;
+            TabFormControl = tabFormControl;
 
-            DashboardTimer = new Timer();
-            DashboardTimer.Elapsed += DashboardTimerElapsed;
-            DashboardTimer.Enabled = true;
+            SetTimer();
         }
         public void Execute()
         {
@@ -32,11 +26,11 @@ namespace DashboardViewer.Model
             }
         }
 
-        public void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
+        public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
             var index = 0;
-            var pageIndex = _tabFormControl.Pages.IndexOf(_tabFormControl.SelectedPage);
-            var maxIndex = _tabFormControl.Pages.Count - 1;
+            var pageIndex = TabFormControl.Pages.IndexOf(TabFormControl.SelectedPage);
+            var maxIndex = TabFormControl.Pages.Count - 1;
 
             if (maxIndex > 0)
             {
@@ -50,9 +44,9 @@ namespace DashboardViewer.Model
                 index = 0;
             }
 
-            _tabFormControl.BeginInvoke(new Action(() =>
+            TabFormControl.BeginInvoke(new Action(() =>
             {
-                _tabFormControl.SelectedPage = _tabFormControl.Pages[index];
+                TabFormControl.SelectedPage = TabFormControl.Pages[index];
             }));
         }
     }
