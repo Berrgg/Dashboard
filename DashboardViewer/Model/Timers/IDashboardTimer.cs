@@ -1,6 +1,6 @@
 ﻿using System.Timers;
 
-namespace DashboardViewer.Model
+namespace DashboardViewer.Model.Timers
 {
     public interface IDashboardTimer
     {

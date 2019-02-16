@@ -3,7 +3,7 @@ using System.Timers;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 
-namespace DashboardViewer.Model
+namespace DashboardViewer.Model.Timers
 {
     public class RefreshTimer : BaseTimer, IDashboardTimer
     {

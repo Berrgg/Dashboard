@@ -1,7 +1,7 @@
 ﻿using System.Timers;
 using DevExpress.XtraBars;
 
-namespace DashboardViewer.Model
+namespace DashboardViewer.Model.Timers
 {
     public abstract class BaseTimer
     {

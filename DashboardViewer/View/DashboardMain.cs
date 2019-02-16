@@ -1,10 +1,11 @@
-﻿using DashboardViewer.Model;
-using DevExpress.XtraBars;
-using System;
+﻿using System;
 using System.Windows.Forms;
-using DevExpress.DashboardCommon;
 using System.Collections.Specialized;
+using DevExpress.DashboardCommon;
+using DevExpress.XtraBars;
 using DashboardViewer.View;
+using DashboardViewer.Model;
+using DashboardViewer.Model.Timers;
 
 namespace DashboardViewer
 {
