@@ -6,6 +6,5 @@ namespace DashboardViewer.Model.Timers
     {
         void Execute();
 
-        void DashboardTimerElapsed(object sender, ElapsedEventArgs e);
     }
 }
