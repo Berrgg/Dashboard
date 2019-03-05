@@ -30,7 +30,6 @@ namespace DashboardViewer
 
             RotateTimer = new RotateTimer(tabFormControl_Main);
             RotateTimer.Execute();
-            RotateTimer.
             //RefreshTimer = new RefreshTimer(tabFormControl_Main);
             //RefreshTimer.Execute();
         }
