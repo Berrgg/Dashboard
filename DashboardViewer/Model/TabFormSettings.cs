@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 
-namespace MyApp.Model
+namespace DashboardViewer.Model
 {
     public class TabFormSettings
     {

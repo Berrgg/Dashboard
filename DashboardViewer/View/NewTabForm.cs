@@ -5,10 +5,9 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Linq;
 using DashboardViewer.Model;
-using MyApp.Model;
 using System.Collections.Specialized;
 
-namespace MyApp.View
+namespace DashboardViewer.View
 {
     public class NewTabForm : XtraUserControl, ISettingsForm
     {

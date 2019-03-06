@@ -1,14 +1,13 @@
-﻿using MyApp.Model;
-using MyApp.View;
-using DevExpress.XtraBars;
-using System;
+﻿using System;
 using System.Windows.Forms;
-using DevExpress.DashboardCommon;
-using DashboardViewer.Model;
 using System.Collections.Specialized;
+using DevExpress.DashboardCommon;
+using DevExpress.XtraBars;
 using DashboardViewer.View;
+using DashboardViewer.Model;
+using DashboardViewer.Model.Timers;
 
-namespace MyApp
+namespace DashboardViewer
 {
     public partial class DashboardMain : TabForm
     {
@@ -18,6 +17,9 @@ namespace MyApp
         private string _key;
         private bool _isNewPage =  true;
         private bool _canAddNewPage = true;
+        private DevExpress.DashboardWin.DashboardViewer _viewer;
+        public RotateTimer RotateTimer { get; set; }
+        public RefreshTimer RefreshTimer { get; set; }
 
         public DashboardMain()
         {
@@ -25,7 +27,13 @@ namespace MyApp
 
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
+
+           // RotateTimer = new RotateTimer(tabFormControl_Main);
+          //  RotateTimer.Execute();
+            //RefreshTimer = new RefreshTimer(tabFormControl_Main);
+            //RefreshTimer.Execute();
         }
+
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
         {
             DashboardMain form = new DashboardMain();
@@ -74,6 +82,18 @@ namespace MyApp
             _isNewPage = true;
         }
 
+        private void DeleteSettingsKeyForClosePage(string keyName)
+        {
+            var tabSettings = new TabFormSettings("TabFormsConfiguration");
+            tabSettings.RemoveKey(keyName);
+        }
+
+        private void RefreshDashboard(DevExpress.DashboardWin.DashboardViewer dashboardViewer)
+        {
+            if (_viewer != null)
+                dashboardViewer.ReloadData(true);
+        }
+
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
         {
             if (_isNewPage)
@@ -90,6 +110,7 @@ namespace MyApp
                 viewer.DashboardSource = @"" + _filePath;
 
                 e.Page.ContentContainer.Controls.Add(viewer);
+                _viewer = viewer;
             }
             else
             {
@@ -102,15 +123,10 @@ namespace MyApp
             }
             _canAddNewPage = true;
         }
+
         private void TabFormControl_Main_PageClosed(object sender, PageClosedEventArgs e)
         {
             DeleteSettingsKeyForClosePage(e.Page.Tag.ToString());
-        }
-
-        private void DeleteSettingsKeyForClosePage(string keyName)
-        {
-            var tabSettings = new TabFormSettings("TabFormsConfiguration");
-            tabSettings.RemoveKey(keyName);
         }
 
         private void DashboardLoadingError(object sender, DataLoadingErrorEventArgs e)
@@ -123,6 +139,20 @@ namespace MyApp
             SettingsForm settingsForm = new SettingsForm();
             SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
             engine.Run();
+        }
+
+        private void TabFormControl_Main_SelectedPageChanged(object sender, TabFormSelectedPageChangedEventArgs e)
+        {
+            foreach (Control c in tabFormControl_Main.SelectedPage.ContentContainer.Controls)
+            {
+                if (c is DevExpress.DashboardWin.DashboardViewer)
+                    _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+            }
+        }
+
+        private void BarButtonRefresh_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            RefreshDashboard(_viewer);
         }
     }
 }

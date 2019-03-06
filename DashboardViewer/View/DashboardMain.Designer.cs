@@ -1,4 +1,4 @@
-﻿namespace MyApp
+﻿namespace DashboardViewer
 {
     partial class DashboardMain
     {
@@ -31,12 +31,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardMain));
             this.tabFormControl_Main = new DevExpress.XtraBars.TabFormControl();
+            this.barButtonSettings = new DevExpress.XtraBars.BarButtonItem();
             this.tabFormDefaultManager1 = new DevExpress.XtraBars.TabFormDefaultManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonSettings = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonRefresh = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl_Main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +46,8 @@
             // 
             this.tabFormControl_Main.AllowMoveTabsToOuterForm = false;
             this.tabFormControl_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonSettings});
+            this.barButtonSettings,
+            this.barButtonRefresh});
             this.tabFormControl_Main.Location = new System.Drawing.Point(0, 0);
             this.tabFormControl_Main.Manager = this.tabFormDefaultManager1;
             this.tabFormControl_Main.Name = "tabFormControl_Main";
@@ -54,11 +56,22 @@
             this.tabFormControl_Main.Size = new System.Drawing.Size(821, 40);
             this.tabFormControl_Main.TabForm = this;
             this.tabFormControl_Main.TabIndex = 0;
+            this.tabFormControl_Main.TabRightItemLinks.Add(this.barButtonRefresh);
             this.tabFormControl_Main.TabRightItemLinks.Add(this.barButtonSettings);
             this.tabFormControl_Main.TabStop = false;
             this.tabFormControl_Main.PageCreated += new DevExpress.XtraBars.PageCreatedEventHandler(this.tabFormControl_Main_PageCreated);
             this.tabFormControl_Main.PageClosed += new DevExpress.XtraBars.PageClosedEventHandler(this.TabFormControl_Main_PageClosed);
+            this.tabFormControl_Main.SelectedPageChanged += new DevExpress.XtraBars.TabFormSelectedPageChangedEventHandler(this.TabFormControl_Main_SelectedPageChanged);
             this.tabFormControl_Main.OuterFormCreating += new DevExpress.XtraBars.OuterFormCreatingEventHandler(this.OnOuterFormCreating);
+            // 
+            // barButtonSettings
+            // 
+            this.barButtonSettings.Caption = "Application settings";
+            this.barButtonSettings.Id = 0;
+            this.barButtonSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.Image")));
+            this.barButtonSettings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.LargeImage")));
+            this.barButtonSettings.Name = "barButtonSettings";
+            this.barButtonSettings.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonSettings_ItemClick);
             // 
             // tabFormDefaultManager1
             // 
@@ -69,8 +82,9 @@
             this.tabFormDefaultManager1.DockingEnabled = false;
             this.tabFormDefaultManager1.Form = this;
             this.tabFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonSettings});
-            this.tabFormDefaultManager1.MaxItemId = 1;
+            this.barButtonSettings,
+            this.barButtonRefresh});
+            this.tabFormDefaultManager1.MaxItemId = 2;
             // 
             // barDockControlTop
             // 
@@ -104,14 +118,14 @@
             this.barDockControlRight.Manager = null;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
             // 
-            // barButtonSettings
+            // barButtonRefresh
             // 
-            this.barButtonSettings.Caption = "Application settings";
-            this.barButtonSettings.Id = 0;
-            this.barButtonSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.Image")));
-            this.barButtonSettings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonSettings.ImageOptions.LargeImage")));
-            this.barButtonSettings.Name = "barButtonSettings";
-            this.barButtonSettings.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonSettings_ItemClick);
+            this.barButtonRefresh.Caption = "Refresh dashboard";
+            this.barButtonRefresh.Id = 1;
+            this.barButtonRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonRefresh.ImageOptions.Image")));
+            this.barButtonRefresh.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonRefresh.ImageOptions.LargeImage")));
+            this.barButtonRefresh.Name = "barButtonRefresh";
+            this.barButtonRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonRefresh_ItemClick);
             // 
             // DashboardMain
             // 
@@ -144,6 +158,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonSettings;
+        private DevExpress.XtraBars.BarButtonItem barButtonRefresh;
     }
 }
 

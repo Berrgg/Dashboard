@@ -1,5 +1,4 @@
-﻿using MyApp.Model;
-
+﻿
 namespace DashboardViewer.Model
 {
     public class AppSettingsValue : ISettingsValue
