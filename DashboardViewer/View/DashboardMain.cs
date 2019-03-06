@@ -28,8 +28,8 @@ namespace DashboardViewer
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
 
-            RotateTimer = new RotateTimer(tabFormControl_Main);
-            RotateTimer.Execute();
+           // RotateTimer = new RotateTimer(tabFormControl_Main);
+          //  RotateTimer.Execute();
             //RefreshTimer = new RefreshTimer(tabFormControl_Main);
             //RefreshTimer.Execute();
         }
