@@ -28,10 +28,23 @@ namespace DashboardViewer
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
 
-           // RotateTimer = new RotateTimer(tabFormControl_Main);
-          //  RotateTimer.Execute();
-            //RefreshTimer = new RefreshTimer(tabFormControl_Main);
-            //RefreshTimer.Execute();
+            SetTimers();
+        }
+
+        private void SetTimers()
+        {
+            var workflow = new TimerWorkflow();
+
+            RefreshTimer = new RefreshTimer(tabFormControl_Main);
+            if (RefreshTimer.IsTimerEnabled)
+                workflow.Add(RefreshTimer);
+
+            RotateTimer = new RotateTimer(tabFormControl_Main);
+            if (RotateTimer.IsTimerEnabled)
+                workflow.Add(RotateTimer);
+
+            var workflowEngine = new TimerWorkflowEngine();
+            workflowEngine.Run(workflow);
         }
 
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
