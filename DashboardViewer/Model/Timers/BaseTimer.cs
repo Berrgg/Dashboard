@@ -12,9 +12,12 @@ namespace DashboardViewer.Model.Timers
         protected string TimerIntervalKey { get; set; }
         public bool IsTimerEnabled { get; private set; } = false;
 
-        protected void SetTimer()
+        public BaseTimer()
         {
             DashboardTimer = new Timer();
+        }
+        protected void SetTimer()
+        {
             DashboardTimer.Enabled = true;
             DashboardTimer.Elapsed += DashboardTimerElapsed;
 
