@@ -10,7 +10,7 @@ namespace DashboardViewer.Model.Timers
         protected string AppSettingsSectionName { get; set; }
         protected string IsTimerEnabledKey { get; set; }
         protected string TimerIntervalKey { get; set; }
-        protected bool IsTimerEnabled { get; private set; } = false;
+        public bool IsTimerEnabled { get; private set; } = false;
 
         protected void SetTimer()
         {

@@ -28,16 +28,19 @@ namespace DashboardViewer.Model.Timers
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            TabFormControl.BeginInvoke(new Action(() =>
+            if (IsTimerEnabled)
             {
-                foreach (Control c in TabFormControl.SelectedPage.ContentContainer.Controls)
+                TabFormControl.BeginInvoke(new Action(() =>
                 {
-                    if (c is DevExpress.DashboardWin.DashboardViewer)
-                        _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
-                }
+                    foreach (Control c in TabFormControl.SelectedPage.ContentContainer.Controls)
+                    {
+                        if (c is DevExpress.DashboardWin.DashboardViewer)
+                            _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                    }
 
-                _viewer.ReloadData(true);
-            }));
+                    _viewer.ReloadData(true);
+                }));
+            }
         }
     }
 }
