@@ -22,7 +22,9 @@ namespace DashboardViewer.Model.Timers
             DashboardTimer.Elapsed += DashboardTimerElapsed;
 
             var settings = new TabFormSettings(AppSettingsSectionName);
-            IsTimerEnabled = bool.Parse(settings.GetValue(IsTimerEnabledKey));
+
+            if (TabFormControl.Pages.Count > 0)
+                IsTimerEnabled = bool.Parse(settings.GetValue(IsTimerEnabledKey));
 
             if (IsTimerEnabled)
             {
