@@ -20,14 +20,9 @@ namespace DashboardViewer.Model.Timers
             SetTimer();
         }
 
-        public void Execute()
-        {
-            if (IsTimerEnabled)
-                DashboardTimer.Start();
-        }
-
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
+            MessageBox.Show("Refresh timer is working");
             if (IsTimerEnabled)
             {
                 TabFormControl.BeginInvoke(new Action(() =>

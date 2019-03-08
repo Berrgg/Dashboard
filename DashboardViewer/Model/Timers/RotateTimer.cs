@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using System.Windows.Forms;
 using DevExpress.XtraBars;
 
 namespace DashboardViewer.Model.Timers
@@ -16,14 +17,10 @@ namespace DashboardViewer.Model.Timers
 
             SetTimer();
         }
-        public void Execute()
-        {
-            if (IsTimerEnabled)
-                DashboardTimer.Start();
-        }
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
+            MessageBox.Show("RotateTimer is working");
             if (IsTimerEnabled)
             {
                 var index = 0;
