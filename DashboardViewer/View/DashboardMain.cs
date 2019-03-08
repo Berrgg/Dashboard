@@ -36,12 +36,10 @@ namespace DashboardViewer
             var workflow = new TimerWorkflow();
 
             RefreshTimer = new RefreshTimer(tabFormControl_Main);
-            if (RefreshTimer.IsTimerEnabled)
-                workflow.Add(RefreshTimer);
+            workflow.Add(RefreshTimer);
 
             RotateTimer = new RotateTimer(tabFormControl_Main);
-            if (RotateTimer.IsTimerEnabled)
-                workflow.Add(RotateTimer);
+            workflow.Add(RotateTimer);
 
             var workflowEngine = new TimerWorkflowEngine();
             workflowEngine.Run(workflow);
