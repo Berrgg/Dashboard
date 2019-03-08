@@ -16,9 +16,11 @@ namespace DashboardViewer.Model.Timers
         {
             DashboardTimer = new Timer();
         }
+
+        public abstract void DashboardTimerElapsed(object sender, ElapsedEventArgs e);
+
         protected void SetTimer()
         {
-            DashboardTimer.Enabled = true;
             DashboardTimer.Elapsed += DashboardTimerElapsed;
 
             var settings = new TabFormSettings(AppSettingsSectionName);
@@ -27,12 +29,24 @@ namespace DashboardViewer.Model.Timers
                 IsTimerEnabled = bool.Parse(settings.GetValue(IsTimerEnabledKey));
 
             if (IsTimerEnabled)
-            {
-                var reloadTime = int.Parse(settings.GetValue(TimerIntervalKey)) * 1000;
-                DashboardTimer.Interval = reloadTime;
-            }
+                TimerStart();
         }
 
-        public abstract void DashboardTimerElapsed(object sender, ElapsedEventArgs e);
+        public void TimerStart()
+        {
+            IsTimerEnabled = true;
+
+            var settings = new TabFormSettings(AppSettingsSectionName);
+            DashboardTimer.Enabled = true;
+
+            var reloadTime = int.Parse(settings.GetValue(TimerIntervalKey)) * 1000;
+            DashboardTimer.Interval = reloadTime;
+        }
+
+        public void TimerStop()
+        {
+            IsTimerEnabled = false;
+            DashboardTimer.Enabled = false;
+        }
     }
 }
