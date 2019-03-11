@@ -47,8 +47,11 @@ namespace DashboardViewer
 
         private void RunTimerWorkflowEngine()
         {
-            var workflowEngine = new TimerWorkflowEngine();
-            workflowEngine.Run(timerWorkflow);
+            if(timerWorkflow != null)
+            {
+                var workflowEngine = new TimerWorkflowEngine();
+                workflowEngine.Run(timerWorkflow);
+            }
         }
 
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
@@ -139,11 +142,13 @@ namespace DashboardViewer
                 ));
             }
             _canAddNewPage = true;
+            RunTimerWorkflowEngine();
         }
 
         private void TabFormControl_Main_PageClosed(object sender, PageClosedEventArgs e)
         {
             DeleteSettingsKeyForClosePage(e.Page.Tag.ToString());
+            RunTimerWorkflowEngine();
         }
 
         private void DashboardLoadingError(object sender, DataLoadingErrorEventArgs e)
