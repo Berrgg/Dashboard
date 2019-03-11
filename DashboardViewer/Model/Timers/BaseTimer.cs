@@ -15,22 +15,18 @@ namespace DashboardViewer.Model.Timers
         public BaseTimer()
         {
             DashboardTimer = new Timer();
+            DashboardTimer.Elapsed += DashboardTimerElapsed;
         }
 
         public abstract void DashboardTimerElapsed(object sender, ElapsedEventArgs e);
 
-        protected void SetTimer()
+        private void EnableTimer()
         {
-            DashboardTimer.Elapsed += DashboardTimerElapsed;
-
             if (TabFormControl.Pages.Count > 0)
             {
                 var settings = new TabFormSettings(AppSettingsSectionName);
                 IsTimerEnabled = bool.Parse(settings.GetValue(IsTimerEnabledKey));
             }
-
-            if (IsTimerEnabled)
-                TimerStart();
         }
 
         private void TimerStart()
@@ -52,6 +48,8 @@ namespace DashboardViewer.Model.Timers
 
         public void Execute()
         {
+            EnableTimer();
+
             if (IsTimerEnabled)
                 TimerStart();
             else

@@ -14,8 +14,6 @@ namespace DashboardViewer.Model.Timers
             AppSettingsSectionName = "GeneralAppSettings";
             IsTimerEnabledKey = "AutoRotate";
             TimerIntervalKey = "RotateTime";
-
-            SetTimer();
         }
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)

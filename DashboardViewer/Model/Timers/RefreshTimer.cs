@@ -16,8 +16,6 @@ namespace DashboardViewer.Model.Timers
             AppSettingsSectionName = "GeneralAppSettings";
             IsTimerEnabledKey = "AutoRefresh";
             TimerIntervalKey = "RefreshTime";
-
-            SetTimer();
         }
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
