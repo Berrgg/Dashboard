@@ -20,6 +20,7 @@ namespace DashboardViewer
         private DevExpress.DashboardWin.DashboardViewer _viewer;
         public RotateTimer RotateTimer { get; set; }
         public RefreshTimer RefreshTimer { get; set; }
+        private TimerWorkflow timerWorkflow;
 
         public DashboardMain()
         {
@@ -33,16 +34,21 @@ namespace DashboardViewer
 
         private void SetTimers()
         {
-            var workflow = new TimerWorkflow();
+            timerWorkflow = new TimerWorkflow();
 
             RefreshTimer = new RefreshTimer(tabFormControl_Main);
-            workflow.Add(RefreshTimer);
+            timerWorkflow.Add(RefreshTimer);
 
             RotateTimer = new RotateTimer(tabFormControl_Main);
-            workflow.Add(RotateTimer);
+            timerWorkflow.Add(RotateTimer);
 
+            RunTimerWorkflowEngine();
+        }
+
+        private void RunTimerWorkflowEngine()
+        {
             var workflowEngine = new TimerWorkflowEngine();
-            workflowEngine.Run(workflow);
+            workflowEngine.Run(timerWorkflow);
         }
 
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
@@ -150,6 +156,7 @@ namespace DashboardViewer
             SettingsForm settingsForm = new SettingsForm();
             SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
             engine.Run();
+            RunTimerWorkflowEngine();
         }
 
         private void TabFormControl_Main_SelectedPageChanged(object sender, TabFormSelectedPageChangedEventArgs e)
