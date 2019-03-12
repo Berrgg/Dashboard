@@ -21,7 +21,7 @@ namespace DashboardViewer.Model.Timers
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            Debug.Print("Refresh timer is working. Interval: " + this.DashboardTimer.Interval/1000 + "s");
+            Debug.Print("Refresh timer is working. Interval: " + this.DashboardTimer.Interval/1000 + "s.");
 
             if (IsTimerEnabled)
             {
@@ -34,6 +34,7 @@ namespace DashboardViewer.Model.Timers
                     }
 
                     _viewer.ReloadData(true);
+                    Debug.Print("   Dashboard refreshed: " + _viewer.DashboardSource);
                 }));
             }
         }
