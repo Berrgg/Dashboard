@@ -145,7 +145,6 @@ namespace DashboardViewer
         private void TabFormControl_Main_PageClosed(object sender, PageClosedEventArgs e)
         {
             DeleteSettingsKeyForClosePage(e.Page.Tag.ToString());
-            RunTimerWorkflowEngine();
         }
 
         private void DashboardLoadingError(object sender, DataLoadingErrorEventArgs e)
@@ -163,10 +162,13 @@ namespace DashboardViewer
 
         private void TabFormControl_Main_SelectedPageChanged(object sender, TabFormSelectedPageChangedEventArgs e)
         {
-            foreach (Control c in tabFormControl_Main.SelectedPage.ContentContainer.Controls)
+            if (tabFormControl_Main.SelectedPage != null)
             {
-                if (c is DevExpress.DashboardWin.DashboardViewer)
-                    _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                foreach (Control c in tabFormControl_Main.SelectedPage.ContentContainer.Controls)
+                {
+                    if (c is DevExpress.DashboardWin.DashboardViewer)
+                        _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                }
             }
         }
 

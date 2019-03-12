@@ -40,7 +40,7 @@ namespace DashboardViewer.Model.Timers
             DashboardTimer.Interval = reloadTime;
         }
 
-        private void TimerStop()
+        protected void TimerStop()
         {
             IsTimerEnabled = false;
             DashboardTimer.Enabled = false;

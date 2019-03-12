@@ -41,7 +41,10 @@ namespace DashboardViewer.Model.Timers
 
                 TabFormControl.BeginInvoke(new Action(() =>
                 {
-                    TabFormControl.SelectedPage = TabFormControl.Pages[index];
+                    if (TabFormControl.Pages.Count > 0)
+                        TabFormControl.SelectedPage = TabFormControl.Pages[index];
+                    else
+                        TimerStop();
                 }));
             }
         }

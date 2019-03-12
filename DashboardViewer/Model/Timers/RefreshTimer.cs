@@ -27,14 +27,21 @@ namespace DashboardViewer.Model.Timers
             {
                 TabFormControl.BeginInvoke(new Action(() =>
                 {
-                    foreach (Control c in TabFormControl.SelectedPage.ContentContainer.Controls)
+                    if (TabFormControl.SelectedPage != null)
                     {
-                        if (c is DevExpress.DashboardWin.DashboardViewer)
-                            _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
-                    }
+                            foreach (Control c in TabFormControl.SelectedPage.ContentContainer.Controls)
+                        {
+                            if (c is DevExpress.DashboardWin.DashboardViewer)
+                                _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                        }
 
-                    _viewer.ReloadData(true);
-                    Debug.Print("   Dashboard refreshed: " + _viewer.DashboardSource);
+                        _viewer.ReloadData(true);
+                        Debug.Print("   Dashboard refreshed: " + _viewer.DashboardSource);
+                    }
+                    else
+                    {
+                        TimerStop();
+                    }
                 }));
             }
         }
