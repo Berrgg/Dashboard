@@ -47,11 +47,8 @@ namespace DashboardViewer
 
         private void RunTimerWorkflowEngine()
         {
-            if(timerWorkflow != null)
-            {
-                var workflowEngine = new TimerWorkflowEngine();
-                workflowEngine.Run(timerWorkflow);
-            }
+            var workflowEngine = new TimerWorkflowEngine();
+            workflowEngine.Run(timerWorkflow);
         }
 
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)

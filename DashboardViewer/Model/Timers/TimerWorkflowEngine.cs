@@ -5,9 +5,12 @@ namespace DashboardViewer.Model.Timers
     {
         public void Run(ITimerWorkflow workflow)
         {
-            foreach (IDashboardTimer timer in workflow.GetTimers())
+            if(workflow != null)
             {
-                timer.Execute();
+                foreach (IDashboardTimer timer in workflow.GetTimers())
+                {
+                    timer.Execute();
+                }
             }
         }
     }
