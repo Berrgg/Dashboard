@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Timers;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
@@ -20,7 +21,8 @@ namespace DashboardViewer.Model.Timers
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            MessageBox.Show("Refresh timer is working");
+            Debug.Print("Refresh timer is working. Interval: " + this.DashboardTimer.Interval/1000 + "s");
+
             if (IsTimerEnabled)
             {
                 TabFormControl.BeginInvoke(new Action(() =>
