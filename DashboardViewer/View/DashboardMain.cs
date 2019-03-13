@@ -20,6 +20,7 @@ namespace DashboardViewer
         private DevExpress.DashboardWin.DashboardViewer _viewer;
         public RotateTimer RotateTimer { get; set; }
         public RefreshTimer RefreshTimer { get; set; }
+        private TimerWorkflow timerWorkflow;
 
         public DashboardMain()
         {
@@ -28,10 +29,26 @@ namespace DashboardViewer
             var tabSettings = new TabFormSettings("TabFormsConfiguration").GetKeys();
             AddTabFormPages(tabSettings);
 
-           // RotateTimer = new RotateTimer(tabFormControl_Main);
-          //  RotateTimer.Execute();
-            //RefreshTimer = new RefreshTimer(tabFormControl_Main);
-            //RefreshTimer.Execute();
+            SetTimers();
+        }
+
+        private void SetTimers()
+        {
+            timerWorkflow = new TimerWorkflow();
+
+            RefreshTimer = new RefreshTimer(tabFormControl_Main);
+            timerWorkflow.Add(RefreshTimer);
+
+            RotateTimer = new RotateTimer(tabFormControl_Main);
+            timerWorkflow.Add(RotateTimer);
+
+            RunTimerWorkflowEngine();
+        }
+
+        private void RunTimerWorkflowEngine()
+        {
+            var workflowEngine = new TimerWorkflowEngine();
+            workflowEngine.Run(timerWorkflow);
         }
 
         void OnOuterFormCreating(object sender, OuterFormCreatingEventArgs e)
@@ -122,6 +139,7 @@ namespace DashboardViewer
                 ));
             }
             _canAddNewPage = true;
+            RunTimerWorkflowEngine();
         }
 
         private void TabFormControl_Main_PageClosed(object sender, PageClosedEventArgs e)
@@ -139,14 +157,18 @@ namespace DashboardViewer
             SettingsForm settingsForm = new SettingsForm();
             SettingsFormEngine engine = new SettingsFormEngine(settingsForm);
             engine.Run();
+            RunTimerWorkflowEngine();
         }
 
         private void TabFormControl_Main_SelectedPageChanged(object sender, TabFormSelectedPageChangedEventArgs e)
         {
-            foreach (Control c in tabFormControl_Main.SelectedPage.ContentContainer.Controls)
+            if (tabFormControl_Main.SelectedPage != null)
             {
-                if (c is DevExpress.DashboardWin.DashboardViewer)
-                    _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                foreach (Control c in tabFormControl_Main.SelectedPage.ContentContainer.Controls)
+                {
+                    if (c is DevExpress.DashboardWin.DashboardViewer)
+                        _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                }
             }
         }
 

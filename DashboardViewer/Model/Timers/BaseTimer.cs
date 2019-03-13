@@ -10,24 +10,50 @@ namespace DashboardViewer.Model.Timers
         protected string AppSettingsSectionName { get; set; }
         protected string IsTimerEnabledKey { get; set; }
         protected string TimerIntervalKey { get; set; }
-        protected bool IsTimerEnabled { get; private set; } = false;
+        public bool IsTimerEnabled { get; private set; } = false;
 
-        protected void SetTimer()
+        public BaseTimer()
         {
             DashboardTimer = new Timer();
-            DashboardTimer.Enabled = true;
             DashboardTimer.Elapsed += DashboardTimerElapsed;
-
-            var settings = new TabFormSettings(AppSettingsSectionName);
-            IsTimerEnabled = bool.Parse(settings.GetValue(IsTimerEnabledKey));
-
-            if (IsTimerEnabled)
-            {
-                var reloadTime = int.Parse(settings.GetValue(TimerIntervalKey)) * 1000;
-                DashboardTimer.Interval = reloadTime;
-            }
         }
 
         public abstract void DashboardTimerElapsed(object sender, ElapsedEventArgs e);
+
+        private void EnableTimer()
+        {
+            if (TabFormControl.Pages.Count > 0)
+            {
+                var settings = new TabFormSettings(AppSettingsSectionName);
+                IsTimerEnabled = bool.Parse(settings.GetValue(IsTimerEnabledKey));
+            }
+        }
+
+        private void TimerStart()
+        {
+            IsTimerEnabled = true;
+
+            var settings = new TabFormSettings(AppSettingsSectionName);
+            DashboardTimer.Enabled = true;
+
+            var reloadTime = int.Parse(settings.GetValue(TimerIntervalKey)) * 1000;
+            DashboardTimer.Interval = reloadTime;
+        }
+
+        protected void TimerStop()
+        {
+            IsTimerEnabled = false;
+            DashboardTimer.Enabled = false;
+        }
+
+        public void Execute()
+        {
+            EnableTimer();
+
+            if (IsTimerEnabled)
+                TimerStart();
+            else
+                TimerStop();
+        }
     }
 }

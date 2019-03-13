@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Timers;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
@@ -16,28 +17,33 @@ namespace DashboardViewer.Model.Timers
             AppSettingsSectionName = "GeneralAppSettings";
             IsTimerEnabledKey = "AutoRefresh";
             TimerIntervalKey = "RefreshTime";
-
-            SetTimer();
-        }
-
-        public void Execute()
-        {
-            if (IsTimerEnabled)
-                DashboardTimer.Start();
         }
 
         public override void DashboardTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            TabFormControl.BeginInvoke(new Action(() =>
-            {
-                foreach (Control c in TabFormControl.SelectedPage.ContentContainer.Controls)
-                {
-                    if (c is DevExpress.DashboardWin.DashboardViewer)
-                        _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
-                }
+            Debug.Print("Refresh timer is working. Interval: " + this.DashboardTimer.Interval/1000 + "s.");
 
-                _viewer.ReloadData(true);
-            }));
+            if (IsTimerEnabled)
+            {
+                TabFormControl.BeginInvoke(new Action(() =>
+                {
+                    if (TabFormControl.SelectedPage != null)
+                    {
+                            foreach (Control c in TabFormControl.SelectedPage.ContentContainer.Controls)
+                        {
+                            if (c is DevExpress.DashboardWin.DashboardViewer)
+                                _viewer = (c as DevExpress.DashboardWin.DashboardViewer);
+                        }
+
+                        _viewer.ReloadData(true);
+                        Debug.Print("   Dashboard refreshed: " + _viewer.DashboardSource);
+                    }
+                    else
+                    {
+                        TimerStop();
+                    }
+                }));
+            }
         }
     }
 }

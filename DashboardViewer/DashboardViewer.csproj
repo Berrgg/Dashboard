@@ -62,9 +62,12 @@
     <Compile Include="Model\Timers\BaseTimer.cs" />
     <Compile Include="Model\Timers\IDashboardTimer.cs" />
     <Compile Include="Model\ISettingsForm.cs" />
+    <Compile Include="Model\Timers\ITimerWorkflow.cs" />
     <Compile Include="Model\Timers\RefreshTimer.cs" />
     <Compile Include="Model\Timers\RotateTimer.cs" />
     <Compile Include="Model\SettingsFormEngine.cs" />
+    <Compile Include="Model\Timers\TimerWorkflow.cs" />
+    <Compile Include="Model\Timers\TimerWorkflowEngine.cs" />
     <Compile Include="View\DashboardMain.cs">
       <SubType>Form</SubType>
     </Compile>
