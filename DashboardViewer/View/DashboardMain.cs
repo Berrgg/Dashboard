@@ -107,8 +107,11 @@ namespace DashboardViewer
 
         private void RefreshDashboard(DevExpress.DashboardWin.DashboardViewer dashboardViewer)
         {
-            if (_viewer != null)
-                dashboardViewer.ReloadData(true);
+            if (dashboardViewer.Controls.Count>0)
+            {
+                if (_viewer != null)
+                    dashboardViewer.ReloadData(true);
+            }
         }
 
         private void tabFormControl_Main_PageCreated(object sender, PageCreatedEventArgs e)
