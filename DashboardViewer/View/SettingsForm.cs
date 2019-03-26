@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.ComponentModel;
+using System.Reflection;
+using System.Drawing;
 
 namespace DashboardViewer.View
 {
@@ -38,16 +40,27 @@ namespace DashboardViewer.View
             textEditRefresh.Validating += new CancelEventHandler(TextBox_Validating);
             textEditRotate.Validating += new CancelEventHandler(TextBox_Validating);
 
+            var newSize = new Size(30, 30);
+            var emptySpace = new EmptySpaceItem
+            {
+                SizeConstraintsType = SizeConstraintsType.Custom,
+                MaxSize = newSize,
+                MinSize = newSize
+            };
+
             var lc = new LayoutControl();
             lc.Dock = DockStyle.Fill;
             lc.AddItem("Dashboard refresh time (in seconds):", textEditRefresh).TextVisible=true;
             lc.AddItem("Dashboard auto refresh:", toggleSwitchAutoRefresh).TextVisible = true;
             lc.AddItem("Rotate time between dashboards (in seconds):", textEditRotate).TextVisible = true;
             lc.AddItem("Auto rotate between dashboards:", toggleSwitchAutoRotate).TextVisible = true;
+            lc.AddItem(emptySpace);
+            lc.AddItem("Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
             Controls.Add(lc);
             Dock = DockStyle.None;
             Width = 500;
+            Height = 180;
         }
 
         public void Execute()
